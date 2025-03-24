@@ -22,13 +22,13 @@ app = FastAPI(
 os.makedirs("static", exist_ok=True)
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
-os.makedirs("templates", exist_ok=True)
-templates = Jinja2Templates(directory="templates")
 
+# RÉPERTOIRES FIXES
+BASE_DIR = Path(__file__).resolve().parent
+TEMPLATES_DIR = BASE_DIR / "templates"
+DATA_BRUTE_DIR = BASE_DIR / "data-brute"
 
-# dossier où seront uploadés les pdf
-DATA_BRUTE_DIR = Path("/app/data-brute")
-
+templates = Jinja2Templates(directory=str(TEMPLATES_DIR))
 
 # Authentification basique
 security = HTTPBasic()
