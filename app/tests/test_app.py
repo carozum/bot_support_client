@@ -1,7 +1,7 @@
 from fastapi.testclient import TestClient
 from app.main import app
 import os
-from services import openai_service
+from app.services import openai_service
 
 client = TestClient(app)
 
