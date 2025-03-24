@@ -14,6 +14,9 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+    env:
+      ENV: test
+
     steps:
       - uses: actions/checkout@v3
 
