@@ -1,6 +1,6 @@
 import pytest
 from fastapi.testclient import TestClient
-from etl.etl_api import app
+from etl_api import app
 
 client = TestClient(app)
 
