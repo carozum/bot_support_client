@@ -9,7 +9,7 @@ import os
 import openai
 from starlette.status import HTTP_401_UNAUTHORIZED
 from typing import Optional
-from app.services.openai_service import ask_openai
+from app.services import openai_service 
 
 # Création du microservices
 app = FastAPI(
@@ -74,7 +74,7 @@ def chat_form(request: Request, credentials: HTTPBasicCredentials = Depends(auth
 @app.post("/chat", response_class=HTMLResponse, summary="Obtenir une réponse", tags=["Chat"])
 async def answer(request: Request, question: str = Form(...), credentials: HTTPBasicCredentials = Depends(authenticate)):
     try:
-        answer = ask_openai(question)
+        answer = openai-service.ask_openai(question)
     except Exception as e:
         answer = f"Erreur lors de l'appel à l'API : {e}"
 
