@@ -49,6 +49,18 @@ jobs:
           pip install --no-cache-dir -r etl/requirements.txt
           pip install pytest
 
+      - name: Init database schema
+        run: |
+          psql -h localhost -U postgres -d etl_db -f etl/schema.sql
+        env:
+          PGPASSWORD: postgres
+
+      - name: Insert test data
+        run: |
+          psql -h localhost -U postgres -d etl_db -f etl/test_data.sql
+        env:
+          PGPASSWORD: postgres
+
       - name: Run tests
         run: |
           export PYTHONPATH=$PYTHONPATH:$(pwd)/etl
