@@ -1,0 +1,33 @@
+name: CI App
+
+on:
+  push:
+    paths:
+      - "app/**"
+      - ".github/workflows/app.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - 'app/**'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          pip install --no-cache-dir -r app/requirements.txt
+          pip install pytest
+
+      - name: Run tests
+        run: |
+          export PYTHONPATH=$PYTHONPATH:$(pwd)/app
+          pytest app/tests

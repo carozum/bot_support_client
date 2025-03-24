@@ -9,8 +9,6 @@ import os
 import openai
 from starlette.status import HTTP_401_UNAUTHORIZED
 from typing import Optional
-from schemas import ChatForm
-
 
 # Création du microservices
 app = FastAPI(
@@ -71,7 +69,7 @@ def chat_form(request: Request, credentials: HTTPBasicCredentials = Depends(auth
 
 
 @app.post("/chat", response_class=HTMLResponse, summary="Obtenir une réponse", tags=["Chat"])
-async def answer(request: Request, form_data: ChatForm = Depends(), credentials: HTTPBasicCredentials = Depends(authenticate)):
+async def answer(request: Request, question: str = Form(...), credentials: HTTPBasicCredentials = Depends(authenticate)):
     try:
         response = openai.chat.completions.create(
             model="gpt-4o",
