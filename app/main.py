@@ -9,7 +9,14 @@ import os
 import openai
 from starlette.status import HTTP_401_UNAUTHORIZED
 from typing import Optional
-from services import openai_service 
+
+# ENV peut être "prod", "test", etc.
+ENV = os.getenv("ENV", "prod")
+
+if ENV == "test":
+     from app.services import openai_service
+else:
+     from services import openai_service
 
 # Création du microservices
 app = FastAPI(
