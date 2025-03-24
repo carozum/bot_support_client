@@ -1,8 +1,16 @@
 from fastapi.testclient import TestClient
 import os
 from pathlib import Path
-from main import openai_service
-from main import app
+
+# ENV peut être "prod", "test", etc.
+ENV = os.getenv("ENV", "prod")
+
+if ENV == "test":
+    from app.main import openai_service  # pour pytest ou exécution spéciale
+    from app.main import app
+else:
+    from main import openai_service
+    from main import app
 
 client = TestClient(app)
 
