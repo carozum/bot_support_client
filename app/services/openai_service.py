@@ -8,7 +8,7 @@ def ask_openai(question: str) -> str:
     response = openai.chat.completions.create(
         model="gpt-4o",
         messages=[
-            {"role": "system", "content": "Tu es un assistant qui aide à comprendre une docum>
+            {"role": "system", "content": "Tu es un assistant qui aide à comprendre une documation en ligne"},
             {"role": "user", "content": question}
         ]
     )
