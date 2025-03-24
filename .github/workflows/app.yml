@@ -30,4 +30,4 @@ jobs:
       - name: Run tests
         run: |
           export PYTHONPATH=$PYTHONPATH:$(pwd)/app
-          pytest app/tests
+          pytest tests
