@@ -2,6 +2,7 @@ from fastapi.testclient import TestClient
 from app.main import app
 import os
 from app.services import openai_service
+from pathlib import Path
 
 client = TestClient(app)
 
