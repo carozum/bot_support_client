@@ -9,6 +9,7 @@ import os
 import openai
 from starlette.status import HTTP_401_UNAUTHORIZED
 from typing import Optional
+from services.openai_service import ask_openai
 
 # Création du microservices
 app = FastAPI(
@@ -64,9 +65,6 @@ async def upload_file(file: UploadFile = File(...), credentials: HTTPBasicCreden
 
 
 # Chat avec GPT-4o
-def init_openai_api_key():
-    openai.api_key = os.getenv("OPENAI_API_KEY", "fake-key-for-tests")
-
 
 @app.get("/chat", response_class=HTMLResponse, summary="Poser une question", tags=["Chat"])
 def chat_form(request: Request, credentials: HTTPBasicCredentials = Depends(authenticate)):
@@ -75,16 +73,8 @@ def chat_form(request: Request, credentials: HTTPBasicCredentials = Depends(auth
 
 @app.post("/chat", response_class=HTMLResponse, summary="Obtenir une réponse", tags=["Chat"])
 async def answer(request: Request, question: str = Form(...), credentials: HTTPBasicCredentials = Depends(authenticate)):
-    init_openai_api_key()
     try:
-        response = openai.chat.completions.create(
-            model="gpt-4o",
-            messages=[
-                {"role": "system", "content": "Tu es un assistant qui aide les utilisateurs à comprendre une documentation logicielle."},
-                {"role": "user", "content": question}
-            ]
-        )
-        answer = response.choices[0].message.content
+        answer = ask_openai(question)
     except Exception as e:
         answer = f"Erreur lors de l'appel à l'API : {e}"
 
