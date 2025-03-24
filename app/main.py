@@ -74,7 +74,7 @@ def chat_form(request: Request, credentials: HTTPBasicCredentials = Depends(auth
 @app.post("/chat", response_class=HTMLResponse, summary="Obtenir une réponse", tags=["Chat"])
 async def answer(request: Request, question: str = Form(...), credentials: HTTPBasicCredentials = Depends(authenticate)):
     try:
-        answer = openai-service.ask_openai(question)
+        answer = openai_service.ask_openai(question)
     except Exception as e:
         answer = f"Erreur lors de l'appel à l'API : {e}"
 
