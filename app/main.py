@@ -64,7 +64,9 @@ async def upload_file(file: UploadFile = File(...), credentials: HTTPBasicCreden
 
 
 # Chat avec GPT-4o
-openai.api_key = os.environ["OPENAI_API_KEY"]
+def init_openai_api_key():
+    openai.api_key = os.getenv("OPENAI_API_KEY", "fake-key-for-tests")
+
 
 @app.get("/chat", response_class=HTMLResponse, summary="Poser une question", tags=["Chat"])
 def chat_form(request: Request, credentials: HTTPBasicCredentials = Depends(authenticate)):
@@ -73,6 +75,7 @@ def chat_form(request: Request, credentials: HTTPBasicCredentials = Depends(auth
 
 @app.post("/chat", response_class=HTMLResponse, summary="Obtenir une réponse", tags=["Chat"])
 async def answer(request: Request, question: str = Form(...), credentials: HTTPBasicCredentials = Depends(authenticate)):
+    init_openai_api_key()
     try:
         response = openai.chat.completions.create(
             model="gpt-4o",
