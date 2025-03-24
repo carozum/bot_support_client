@@ -16,7 +16,7 @@ def get_connection():
         database=os.environ["POSTGRES_DB"],
         user=os.environ["POSTGRES_USER"],
         password=os.environ["POSTGRES_PASSWORD"],
-        host="db",
+        host=os.environ.get("POSTGRES_HOST", "db"),
         port="5432",
         cursor_factory=RealDictCursor,
     )
