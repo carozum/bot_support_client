@@ -51,4 +51,5 @@ jobs:
 
       - name: Run tests
         run: |
+          export PYTHONPATH=$PYTHONPATH:$(pwd)/etl
           pytest etl/tests
