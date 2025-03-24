@@ -3,6 +3,7 @@ from app.main import app
 import os
 from app.services import openai_service
 from pathlib import Path
+from app import main
 
 client = TestClient(app)
 
@@ -11,7 +12,7 @@ def test_chat_post(monkeypatch):
     def mock_ask_openai(question: str) -> str:
         return "Réponse mockée"
 
-    monkeypatch.setattr(openai_service, "ask_openai", mock_ask_openai)
+    monkeypatch.setattr(main.openai_service, "ask_openai", mock_ask_openai)
 
     response = client.post(
         "/chat",

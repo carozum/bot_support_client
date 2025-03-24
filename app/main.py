@@ -9,7 +9,7 @@ import os
 import openai
 from starlette.status import HTTP_401_UNAUTHORIZED
 from typing import Optional
-from app.services import openai_service 
+from services import openai_service 
 
 # Création du microservices
 app = FastAPI(
