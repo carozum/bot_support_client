@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+
+# Environnement
+.env
+.env.*
+
+# Logs
+*.log
+log/
+
+# Docker
+*.pid
+*.sock
+*.tar
+*.log
+*.img
+.vscode/
+*.DS_Store
+
+# Pytest
+.pytest_cache/
+.coverage
+
+# IDE
+.idea/
+.vscode/
+
+# Build
+dist/
+build/
+*.egg-info/
+
+# HuggingFace cache
+~/.cache/huggingface

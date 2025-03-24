@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Upload PDF – Admin</title>
+</head>
+<body>
+
+  <h1>Upload d’un fichier PDF</h1>
+
+  <form action="/upload" enctype="multipart/form-data" method="post">
+    <input type="file" name="file" accept="application/pdf" required>
+    <button type="submit">Envoyer</button>
+  </form>
+
+  <h2>Fichiers déjà présents dans data-brute :</h2>
+    <ul>
+      {% for file in files %}
+        <li>{{ file }}</li>
+      {% else %}
+        <li>Aucun fichier pour le moment.</li>
+      {% endfor %}
+    </ul>
+
+</body>
+</html>
