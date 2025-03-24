@@ -5,6 +5,9 @@ Il se compose d'un pipeline complet de traitement de documents PDF, extraction d
 Ce pipeline permet d'extraire un dataset d'entrainement pour fine tuner un modèle LMM embarqué Mistral 7B v03.
 Il met en place une démarche DEvOps et LLMOps de suivi de projet et de suivi du fine tuning d'un LLM d'IA. 
 
+![CI - ETL Microservice](https://github.com/carozum/bot_support_client/actions/workflows/etl.yml/badge.svg)
+
+
 ## Fonctionnalités
 
 - Upload de fichiers PDF via une interface (microservice `app`)

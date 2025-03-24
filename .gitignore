@@ -38,3 +38,7 @@ build/
 
 # HuggingFace cache
 ~/.cache/huggingface
+
+# Résultats
+resultat_extraction/
+data-brute/
