@@ -17,8 +17,11 @@ app = FastAPI(
     version="1.0.0"
 )
 
-
+# Crée les dossiers s'ils n'existent pas (utile en CI)
+os.makedirs("static", exist_ok=True)
 app.mount("/static", StaticFiles(directory="static"), name="static")
+
+os.makedirs("templates", exist_ok=True)
 templates = Jinja2Templates(directory="templates")
 
 
