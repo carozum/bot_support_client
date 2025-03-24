@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chatbot</title>
+</head>
+<body>
+    <h1>Pose ta question</h1>
+    <form method="post">
+        <input type="text" name="question" placeholder="Ta question ici..." required>
+        <button type="submit">Envoyer</button>
+    </form>
+
+    {% if question %}
+        <h2>Question :</h2>
+        <p>{{ question }}</p>
+    {% endif %}
+    
+    {% if answer %}
+        <h2>Réponse :</h2>
+        <p>{{ answer }}</p>
+    {% endif %}
+</body>
+</html>
