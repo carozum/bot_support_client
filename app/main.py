@@ -18,17 +18,22 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# Crée les dossiers s'ils n'existent pas (utile en CI)
-os.makedirs("static", exist_ok=True)
-app.mount("/static", StaticFiles(directory="static"), name="static")
-
-
-# RÉPERTOIRES FIXES
+# Dossier courant du fichier main.py
 BASE_DIR = Path(__file__).resolve().parent
+
+# Répertoires utiles
+STATIC_DIR = BASE_DIR / "static"
 TEMPLATES_DIR = BASE_DIR / "templates"
 DATA_BRUTE_DIR = BASE_DIR / "data-brute"
 
+# Création des dossiers si absents (utile en CI ou premier lancement)
+STATIC_DIR.mkdir(parents=True, exist_ok=True)
+DATA_BRUTE_DIR.mkdir(parents=True, exist_ok=True)
+
+# Configuration Jinja2 et statiques
+app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
 templates = Jinja2Templates(directory=str(TEMPLATES_DIR))
+
 
 # Authentification basique
 security = HTTPBasic()

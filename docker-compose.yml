@@ -31,6 +31,20 @@ services:
       - .env
 
 
+  app-test:
+    build:
+      context: ./app
+    command: >
+      sh -c "
+        export PYTHONPATH=/app &&
+        pytest /app/tests
+      "
+    volumes:
+      - .:/workspace
+    env_file:
+      - .env
+
+
   watchdog:
     build: ./watchdog
     volumes:
