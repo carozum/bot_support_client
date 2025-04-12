@@ -28,7 +28,7 @@ class ChunkWithQA(BaseModel):
     id_chunk: int
     titre: str
     contenu: str
-    page: int
+    page:  Optional[int] = None
     nombre_tokens: int
     questions_reponses: List[QA]
 
@@ -37,7 +37,7 @@ class ChunkOnly(BaseModel):
     id_chunk: int
     titre: str
     contenu: str
-    page: int
+    page:  Optional[int] = None
     nombre_tokens: int
     id_source: int
 
@@ -53,5 +53,5 @@ class QAWithChunkItem(BaseModel):
 class ChunkItem(BaseModel):
     id_chunk: int
     contenu: str
-    page: Optional[int]
+    page: Optional[int] = None
     id_source: int

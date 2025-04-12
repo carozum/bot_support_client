@@ -1,1 +1,97 @@
-[]
+[
+    {
+        "titre": "Chunk 1",
+        "contenu": "6 Principes généraux 1 Principes généraux Le module OCTIME WEB permet à un utilisateur, après identification via un intranet, de : ·         consulter : Ø       le statut de ses demandes qu’elles soient  acceptées, refusées ou en attente de traitement, Ø       son planning, le détail de sa journée, la valeur de ses compteurs (solde Congés payés, RTT…) ·         déclarer : Ø       ses absences ou suppression d’absence, Ø       un temps travaillé, Ø       un horaire exceptionnel ou un horaire à la carte ·         badger : Ø       via une badgeuse virtuelle Chaque collaborateur est rattaché dans OCTIME à un supérieur hiérarchique (le valideur), chargé de valider ou refuser les demandes de ce collaborateur. Afin de parfaire l’échange d’informations, un échange de courrier électronique peut être paramétré entre le collaborateur et le valideur. 11.0.0-0 1.1 Identification Cet écran permet à l’utilisateur de se connecter au module OCTIME WEB OCTIME - Module web Employé 7 Principes généraux Le collaborateur doit choisir la société dont il dépend (sélection du dossier), s’il n’existe qu’une société celle-ci  sera automatiquement affichée. Chaque collaborateur s’identifie dans ce module grâce à son identifiant  et son mot de passe définis dans sa fiche personnel d’OCTIME. Cliquer sur pour valider et accéder au module OCTIME WEB Si le collaborateur a oublié son mot de passe, celui-ci peut être regénéré et immédiatement envoyé dans sa boite aux lettres par mail en cliquant sur Bien sûr cette manipulation ne peut être effectuée que si l’adresse mail du collaborateur est renseignée dans sa fiche personnelle d’Octime. Cette option peut-être désactivé en ajoutant la ligne suivante dans le fichier Octime.ini",
+        "page": null,
+        "nom_fichier": "Employé Principes généraux.pdf",
+        "nombre_tokens": 527,
+        "questions_reponses": [
+            {
+                "question": "Comment un collaborateur peut-il consulter le statut de ses demandes dans le module OCTIME WEB ?",
+                "réponse": "Un collaborateur peut consulter le statut de ses demandes dans le module OCTIME WEB après s'être identifié via un intranet. Il pourra voir si ses demandes sont acceptées, refusées ou en attente de traitement, ainsi que son planning, le détail de sa journée et la valeur de ses compteurs tels que le solde de congés payés et RTT."
+            },
+            {
+                "question": "Que doit faire un collaborateur s'il a oublié son mot de passe pour accéder au module OCTIME WEB ?",
+                "réponse": "Si un collaborateur a oublié son mot de passe, il peut le régénérer et le recevoir immédiatement par mail dans sa boîte aux lettres en cliquant sur l'option prévue à cet effet. Cependant, cette manipulation ne peut être effectuée que si l'adresse mail du collaborateur est renseignée dans sa fiche personnelle d'OCTIME."
+            }
+        ]
+    },
+    {
+        "titre": "Chunk 2",
+        "contenu": "[WEB] RappelMotDePasse=N Les boutons permettent de choisir la langue de l'application, si la licence comprend le multi-langue. OCTIME - Module web Employé 8 Principes généraux 1.2 Bandeau Ce bandeau est commun à touts Les pages de l'application il donne accès à quelques outils. Un clic sur le logo Octime ou le menu Accueil raménera le collaborateur au portail. Le nom du dossier est rappelé ainsi que l'identité du collaborateur connecté. Si le collaborateur n'est pas lié à) un compte manager, un clic sur son identité permet d'ouvrir un menu qui permet d'accéder à la page des informations personnelles et de se déconnecter. 158 Si le collaborateur est lié à un compte manager, un clic sur son nom permet d'accéder à un menu qui permet de basculer vers onscompte manager. Les icônes suivantes permettent un accès à : OCTIME - Module web Employé 9 Principes généraux La liste des demandes de l'employé, la pastille indique les nombre de demandes en attente depuis une durée définie par les paramètres. La page des notifications, la pastille indique le nombre de notifcation en attente. La boîte des éditions , la pastille indique le nombre d'édition non lue. 22 La page de levée d'anomalie, la pastille indique le nombre d'anomalies bloquantes. Quelques pages bénéficient d'un accès direct depuis le bandeau, ces accès dépendent des autorisations qui vous ont été accordées. Un clic sur le menu permet d'ouvrir le menu : Le bouton permet d'accèder à cette documentation.",
+        "page": null,
+        "nom_fichier": "Employé Principes généraux.pdf",
+        "nombre_tokens": 446,
+        "questions_reponses": [
+            {
+                "question": "Quel est le rôle du bandeau dans l'application Octime ?",
+                "réponse": "Le bandeau est commun à toutes les pages de l'application et donne accès à plusieurs outils. Il permet de revenir au portail en cliquant sur le logo Octime ou le menu Accueil, affiche le nom du dossier et l'identité du collaborateur connecté. Si le collaborateur n'est pas lié à un compte manager, cliquer sur son identité ouvre un menu pour accéder aux informations personnelles et se déconnecter. Si le collaborateur est lié à un compte manager, cliquer sur son nom permet de basculer vers le compte manager. De plus, le bandeau fournit des accès directs à la liste des demandes de l'employé, aux notifications, aux éditions non lues, et à la page de levée d'anomalie, avec des pastilles indiquant le nombre d'éléments en attente."
+            }
+        ]
+    },
+    {
+        "titre": "Chunk 3",
+        "contenu": "1.3 Portail Après la connexion le collaborateur arrive sur la page d'accueil, cette page donne accès à tous les programmes. OCTIME - Module web Employé 10 Principes généraux OCTIME - Module web Employé 11 Principes généraux Le bandeau est commun à toutes les pages. 8 Un premier bloc présente les informations concernantle collaborateur, son identité. Ce pavé vous permet un accès rapide à différentes pages en vous rappelant le nombres d'objets concernés : Chaque pastille de cet encart donne accès à des pages différentes : Cette ligne donne accès à la page des demandes , en rouge seront prés sélectionnées les demandes refusées, en bleu les demandes en attente et en vert les demandes validées. 30 Cette ligne donne accès à la page des notifications. OCTIME - Module web Employé 12 Principes généraux Cette ligne donne accès à la boites des éditions, en rouge (éventuellement)  le nombre d'éditions en erreur, en bleu le nombre d'édition en attente, en vert le nombre d'éditions disponibles. Cette ligne indique le nombre d'anomalies vous concernant et auxquelles votre administrateur vous a autorisé l'accès., et donne accès à la liste des anomalies . 23 L'accès au menu se fait en cliquant sur le titre Mon activité Ce widget affiche le planning du jour OCTIME - Module web Employé 13 Principes généraux Le calendrier permet de sélectionner une autre date. Les boutons permettent d'afficher le planning de la veille, du lendemain. Infos L'espace info affiche les dernières informations vous concernant Le bouton permet de visualiser le document . Les autres widgets affichés dans le tableau de bord sont paramétrables par le biais de la page des",
+        "page": null,
+        "nom_fichier": "Employé Principes généraux.pdf",
+        "nombre_tokens": 468,
+        "questions_reponses": [
+            {
+                "question": "Quel est le contenu principal de la page d'accueil du portail après la connexion du collaborateur ?",
+                "réponse": "Après la connexion, le collaborateur arrive sur la page d'accueil qui donne accès à tous les programmes. Cette page comprend un bandeau commun à toutes les pages et un premier bloc présentant les informations concernant le collaborateur, son identité. Ce pavé permet un accès rapide à différentes pages en affichant le nombre d'objets concernés. Les pastilles de cet encart donnent accès à des pages différentes, telles que les demandes (avec des codes couleurs pour les demandes refusées, en attente et validées), les notifications, les éditions (avec des codes couleurs pour les éditions en erreur, en attente et disponibles), et les anomalies. De plus, le menu est accessible en cliquant sur le titre 'Mon activité', et un widget affiche le planning du jour, avec la possibilité de sélectionner une autre date."
+            }
+        ]
+    },
+    {
+        "titre": "Chunk 4",
+        "contenu": "autorisations. Mes compteurs Cet outil affiche une visualisation à la date du jour, cette visualisation est paramétrable. 21 OCTIME - Module web Employé 14 Principes généraux Le lien Mes compteurs donne accès à la page Mes compteurs . Mes badges Cet outil affiche les badges de l'employé durant les 15 derniers jours, cette durée est paramétrable. 36 Le lien Voir mon historique donne accès à la page donnant le détail de la journée . Mes absences Cet outil affiche les absences de l'employé durant les 15 derniers jours, cette durée est paramétrable. 35 OCTIME - Module web Employé 15 Principes généraux Le bouton permet d'accéder à la page de demande d'absence. Le lien Voir mon historique donne accès à la page donnant le détail de la journée . Mes horaires 35 Ce widgeet donne les horaires de début et de fin des plages obligatoires de l'horaire du jour et du lendemain. OCTIME - Module web Employé 16 Principes généraux Le bouton donne accès à la page de demande d'horaire. Le lien Ma journée donne accès à la page donnant le détail de la journée . 35 Mon déclaratif Cet outil donne un accès rapide aux différentes pages de saisie du déclaratif. OCTIME - Module web Employé 17 Principes généraux Mon planning Cet outil affiche un planning du mois en cours. Le lien Mon planning donne accès au planning individuel annuel . 60 En télétravail OCTIME - Module web Employé 18 Principes généraux Cet outil affiche le prochain télétravail  planifié pour l'employé ainsi que les collègues en télétravail actuellement, il comporte également un lien qui permet d'accéder à la page de demande de",
+        "page": null,
+        "nom_fichier": "Employé Principes généraux.pdf",
+        "nombre_tokens": 495,
+        "questions_reponses": [
+            {
+                "question": "Quel est l'objectif de l'outil 'Mes compteurs' dans le module web Employé d'Octime ?",
+                "réponse": "L'outil 'Mes compteurs' affiche une visualisation à la date du jour, qui est paramétrable, permettant à l'employé de suivre ses compteurs de manière personnalisée."
+            }
+        ]
+    },
+    {
+        "titre": "Chunk 5",
+        "contenu": "télétravail . 77 Le bouton permet d'accèder à la page de saisie de télétravail. L'annuaire Cet outil permet d'effectuer rapidement une recherche dans l'annuaire. Sur le nom ou le prénom : Le bouton permet de lancer la recherche. Le bouton permet un accès direct à l'annuaire. La to do list Cet outil permet d'afficher une liste de tâches à réaliser, si l'utilisateur est lié à un employé, cette liste sera commune aux deux entités. OCTIME - Module web Employé 19 Principes généraux Le bouton plus permet de rajouter une tâche. Cliquer surle bouton à droite d'une tâche permet de la modifier ou de la supprimer. En cochant la tâche, elle considérée comme réalisé, un gauche apparaît devant. Au prochain affichage les tâches réalisées passent à la fin de la liste. Le tableau des documents Propose les documents d'une catégorie, rangés par sous-catégorie dans des onglets. OCTIME - Module web Employé 20 Principes généraux Un clic sur le document ouvre directement l'objet. La liste des documents Cet outil affiche les 10 derniers documents lus, il est également de rechercher un objet par mot clés. La dernière info Cet outil affiche le dernier objet créé. Liens Cet outil permet d'afficher des liens vers des pages externes à l'application, ces liens se paramètrent par la page de paramétrage des modules externes. OCTIME - Module web Employé 21 Principes généraux En bas de page sont affichés la version, le nom du dossier et les boutons de changement de langue, si votre licence comporte cette option.",
+        "page": null,
+        "nom_fichier": "Employé Principes généraux.pdf",
+        "nombre_tokens": 463,
+        "questions_reponses": [
+            {
+                "question": "Quel est le rôle du bouton dans la fonctionnalité de télétravail ?",
+                "réponse": "Le bouton permet d'accéder à la page de saisie de télétravail."
+            }
+        ]
+    },
+    {
+        "titre": "Chunk 6",
+        "contenu": "1.3.1 Visualisation d'un document Cette page permet de visualiser le texte complet des informations. Et de consulter les fichiers joints. OCTIME - Module web Employé 22 Principes généraux Si un fichier est joint à cette information, vous pouvez le consulter en cliquant sur l'icône correspondant à son type : , dans le cas d'un document Word. 1.3.2 Boite des éditions Si les édition sont lancées en différé, une fois terminées elles sont accessibles dans la boite des éditions. OCTIME - Module web Employé 23 Principes généraux Ell est accessible depuis le bandeau en cliquant sur l'icône ou depuis le portail en cliquant sur le nombre d'éditions en attente . Pour consulter une édition cliquer sur son libellé. , une fois consultée l'édition est supprimée de la liste. Le bouton supprimer une édition de la liste sans la  consulter. 1.3.3 Boite des anomalies Cette page affiche les anomalies vous concernant que vous êtes autorisé à voir. OCTIME - Module web Employé 24 Principes généraux Ell est accessible depuis le bandeau en cliquant sur l'icône ou depuis le portail en cliquant sur le nombre d'anomalies . Pour lever une anomalie cliquer sur le lien pour accéder à la page du déclaratif de la date concernée. 110 1.3.4 Espace documentaire Cette page permet de rechercher un document par mot clé, publié durant une période et de consulter les documents A l'ouverture, la page affiche tous les documents : Il est possible de spécifier : - La période de publication : OCTIME - Module web Employé 25 Principes généraux - Le type de document : Les mots-clés : La catégorie et éventuellement la sous-catégorie : Lancez la recherche par le bouton",
+        "page": null,
+        "nom_fichier": "Employé Principes généraux.pdf",
+        "nombre_tokens": 495,
+        "questions_reponses": [
+            {
+                "question": "Comment puis-je visualiser un document et consulter ses fichiers joints dans le module web Employé d'OCTIME ?",
+                "réponse": "Pour visualiser un document et consulter ses fichiers joints dans le module web Employé d'OCTIME, vous devez accéder à la page dédiée à la visualisation des documents. Si un fichier est joint à l'information, vous pouvez le consulter en cliquant sur l'icône correspondant à son type, par exemple, une icône spécifique pour un document Word."
+            }
+        ]
+    },
+    {
+        "titre": "Chunk 7",
+        "contenu": ". Les résultats s'affichent dans la partie droite de l'écran. OCTIME - Module web Employé 26 Principes généraux Pour visualiser un document cliquer sur le titre. Pour afficher directement le contenu d'un fichier cliquer sur le lien correspondant 21 . 1.4 Sélection d'une date Les champs de type date permettent d'utiliser un calendrier, la saisie directe reste possible. Ce bouton ouvre le calendrier : OCTIME - Module web Employé 27 Principes généraux Il est possible de passer au mois suivant ou au précédent par les deux flèches encadrant le mois en cours . Pour sélectionner une date, cliquer sur le jour correspondant, cela fermera le calendrier et renseignera le champ correspondant. Le lien permet de sélectionner le jour en cours. OCTIME - Module web Employé",
+        "page": null,
+        "nom_fichier": "Employé Principes généraux.pdf",
+        "nombre_tokens": 231,
+        "questions_reponses": [
+            {
+                "question": "Comment puis-je visualiser un document dans le module web Employé d'OCTIME ?",
+                "réponse": "Pour visualiser un document, il suffit de cliquer sur le titre du document. Si vous souhaitez afficher directement le contenu d'un fichier, vous devez cliquer sur le lien correspondant."
+            }
+        ]
+    }
+]

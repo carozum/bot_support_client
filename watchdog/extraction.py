@@ -22,12 +22,13 @@ tokenizer = AutoTokenizer.from_pretrained("mistralai/Mistral-7B-Instruct-v0.3", 
 openai.api_key = os.environ["OPENAI_API_KEY"]
 client = OpenAI()
 
-encoder = HuggingFaceEncoder(name="sentence-transformers/all-MiniLM-L6-v2")
+encoder = HuggingFaceEncoder(name="sentence-transformers/all-mpnet-base-v2")
 chunker = StatisticalChunker(
-        threshold_adjustment=0.1,
+        threshold_adjustment=0.02,
         encoder = encoder,
-        min_split_tokens = 300,
-        max_split_tokens=600
+        min_split_tokens = 400,
+        max_split_tokens=600,
+        window_size = 80
         )
 
 def encode_image_to_base64(image_bytes):
@@ -88,7 +89,7 @@ def review_caption(caption, max_tokens):
         ],
         max_tokens=max_tokens
     )
-
+    logging.info(response.choices[0].message.content.strip())
     return response.choices[0].message.content.strip()
 
 def generate_text_image(image_bytes, max_tokens=30):
@@ -106,6 +107,7 @@ def generate_text_image(image_bytes, max_tokens=30):
         ],
         max_tokens=max_tokens
     )
+    logging.info(response.choices[0].message.content.strip())
     return response.choices[0].message.content.strip()
 
 
@@ -124,9 +126,8 @@ def generate_text_button(image_bytes, max_tokens=15):
         ],
         max_tokens=max_tokens
     )
+    logging.info(response.choices[0].message.content.strip())
     return response.choices[0].message.content.strip()
-
-
 
 
 def calculate_tokens(text):
@@ -168,7 +169,10 @@ def generate_content_from_pdf(pdf_path):
         titre = file_name.replace("Gestion ", "")
         logging.info(f"titre: {titre}")
         logging.info(f"prefix: {prefix}")
-    
+    else:
+        prefix = "Inconnu"
+        titre = file_name  # ou file_name.replace(".pdf", "")
+        logging.warning(f"Aucun préfixe détecté pour {file_name}, titre = {titre}")
    
     doc = fitz.open(pdf_path)
     
@@ -185,18 +189,14 @@ def generate_content_from_pdf(pdf_path):
         ### 2. EXTRAIRE LES IMAGES ET LEURS POSITIONS ###
         image_elements = []
         for img_index, img in enumerate(page.get_images(full=True)):
+            logging.info(f"Image {img_index} détectée sur la page {page_num}")
             xref = img[0]  # Identifiant unique de l'image
             base_image = doc.extract_image(xref)
             image_bytes = base_image["image"]
-            # ✅ Protection contre images sans bbox
+            # Protection contre images sans bbox
             rects = page.get_image_rects(xref)
-            if not rects:
-                logging.warning(f"Aucune position trouvée pour l'image xref={xref} à la page {page_num + 1}")
-            continue  # on passe à l'image suivante
-        
             bbox = rects[0]  # Obtenir la position de l'image (x1, y1, x2, y2)
 
-            
             # Charger l'image avec PIL
             image = Image.open(io.BytesIO(image_bytes))
             image = preprocess_image_for_ocr(image)
@@ -204,6 +204,7 @@ def generate_content_from_pdf(pdf_path):
             # Application de l'OCR
             extracted_text = pytesseract.image_to_string(image, config='--psm 6').strip()
             extracted_text = clean_text(extracted_text)
+            logging.info(f"Texte OCR brut : {extracted_text}")
             
             # Classification des images via OpenAI
             if len(extracted_text) > 30:
@@ -219,7 +220,7 @@ def generate_content_from_pdf(pdf_path):
                     
                     if ("triangle" in placeholder.lower() or "triangulaire" in placeholder.lower() or "pyramide" in placeholder.lower()) and not "triangle rouge" in placeholder.lower():
                         placeholder = ""
-                
+            logging.info(f"Placeholder généré : {placeholder}")
                 
             
             image_elements.append({"type": "image", "content": placeholder, "x": bbox[0], "y": bbox[1], "width": bbox[2] - bbox[0]})
@@ -229,138 +230,52 @@ def generate_content_from_pdf(pdf_path):
         all_elements = sorted(all_elements, key=lambda e: (e["y"], e["x"]))
         
         ### 4. RECONSTRUCTION DU TEXTE ###
-        page_text = f"Page {page_num + 1}\n" + "\n"
+        page_text = "\n"
         for e in all_elements:
-            content = e['content'].replace("OCTIME - Module web Employé ", "").replace("                                                                                                                                                                                                                  © 2025 OCTIME", "")
+            content = e['content'].replace("OCTIME - Module web Employé ", "").replace("                                                                                                                                                                                                                  © 2025 OCTIME", "").replace("OCTIME - Gestion v 11 ", "").replace("                                                                                                                                                                                                                  © 2025 OCTIME", "")            
             page_text += f"{content}\n"
-        
+
         final_document += page_text + "\n"
-            
-        
 
-    # Structurer les données en JSON
+    chunks = chunker(docs=[final_document])
+    #print(chunks)
+
+    # Etape 1 regrouper les splits
+    chunks_list = [chunks[0][i].splits for i in range(len(chunks[0]))]
+    logging.info(len(chunks_list))
+
+    # Étape 2 — concaténer les splits
+    chunks_flat = []
+    for chunk in chunks_list:
+        chunk_string = " ".join(chunk).strip()
+        chunks_flat.append(chunk_string)
+    logging.info(f"chunks_flat {len(chunks_flat)}")
+
+    # Étape 3 — construire les objets JSON
     json_data = []
-    current_section = None
-    current_content = []
-    current_page = 1
-    section_start_page = 1
 
-    # Variable pour stocker le texte avant le premier titre
-    pre_title_text = []
-
-    # Variable pour indiquer si le premier titre a été trouvé
-    first_title_found = False
-
-    for line in final_document.split("\n"):
-        page_match = re.search(r"Page (\d+)", line)
-        if page_match:
-            current_page = int(page_match.group(1))
-            
-        match = re.match(r"(\d+\.\d+(?:\.\d+)*)(.*)", line)
-        if match:
-            section = match.group(0).strip()
-
-            if section == current_section:
-                continue
-
-            if current_section and current_content:
-                cleaned_content = clean_chunk_content("\n".join(current_content), titre)
-    
-                # --- Nouveau : découpage sémantique en sous-chunks
-                chunks = chunker(docs=[cleaned_content])
-                sub_chunks = [chunk.splits for chunk in chunks if hasattr(chunk, "splits")]
-
-                # --- Vérification : éviter l'erreur list index out of range
-                if not sub_chunks or not sub_chunks[0]:
-                    logging.warning(f"ucun chunk généré pour : {current_section} → contenu ignoré.")
-                else :
-
-                    for i, splits in enumerate(sub_chunks[0]):
-                        chunk_text = " ".join(splits).strip()
-
-                        if not chunk_text:
-                            continue
-
-                        nb_tokens = calculate_tokens(chunk_text)
-                        if nb_tokens > 600:
-                            logging.warning(f"Chunk trop long : {nb_tokens} tokens - titre: {current_section} - chunk {i+1}")
-
-                        json_data.append({
-                            "titre": f"{current_section} - chunk {i+1}",
-                            "contenu": chunk_text,
-                            "page": section_start_page,
-                            "nom_fichier": os.path.basename(pdf_path),
-                            "nombre_tokens": nb_tokens
-                        })
-
-            current_section = section
-            current_content = []
-            section_start_page = current_page
-            first_title_found = True
-        else:
-            if first_title_found:
-                current_content.append(line)
-            else:
-                pre_title_text.append(line)
-
-
-    # Ajouter le texte avant le premier titre au JSON - PREMIER BLOC
-    if pre_title_text:
-        # logging.info(pre_title_text)
-        cleaned_pre_title_text = clean_chunk_content("\n".join(pre_title_text), titre)
-        chunks = chunker(docs=[cleaned_pre_title_text])
-        sub_chunks = [chunk.splits for chunk in chunks if hasattr(chunk, "splits")]
-
-        if not sub_chunks or not sub_chunks[0]:
-            logging.warning("Aucun chunk généré pour l’introduction.")
-        else:
-
-            for i, splits in enumerate(sub_chunks[0]):
-                chunk_text = " ".join(splits).strip()
-
-                if not chunk_text:
-                    continue
-
-                nb_tokens = calculate_tokens(chunk_text)
-                if nb_tokens > 600:
-                    logging.warning(f"hunk trop long : {nb_tokens} tokens - titre: {current_section} - chunk {i+1}")
-
-                if not chunk_text:
-                    continue
-                json_data.append({
-                    "titre": f"Introduction - chunk {i+1}",
-                    "contenu": chunk_text,
-                    "page": 1,
-                    "nom_fichier": os.path.basename(pdf_path),
-                    "nombre_tokens": nb_tokens
-                })
-
-    if current_section and current_content:
-        cleaned_content = clean_chunk_content("\n".join(current_content), titre)
-        chunks = chunker(docs=[cleaned_content])
-        sub_chunks = [chunk.splits for chunk in chunks if hasattr(chunk, "splits")]
-
-        if not sub_chunks or not sub_chunks[0]:
-            logging.warning(f"Aucun chunk généré pour : {current_section} → contenu ignoré.")
-        else:
-            for i, splits in enumerate(sub_chunks[0]):
-                chunk_text = " ".join(splits).strip()
-                if not chunk_text:
-                    continue
-                nb_tokens = calculate_tokens(chunk_text)
-                if nb_tokens > 600:
-                    logging.warning(f"Chunk trop long : {nb_tokens} tokens - titre: {current_section} - chunk {i+1}")
-                json_data.append({
-                    "titre": f"{current_section} - chunk {i+1}",
-                    "contenu": chunk_text,
-                    "page": section_start_page,
-                    "nom_fichier": os.path.basename(pdf_path),
-                    "nombre_tokens": nb_tokens
-                })
-
+    for i, chunk_text in enumerate(chunks_flat):
+        if not chunk_text:
+            continue
+        nb_tokens = calculate_tokens(chunk_text)
+        json_data.append({
+            "titre": f"Chunk {i+1}",
+            "contenu": chunk_text,
+            "page": None,
+            "nom_fichier": os.path.basename(pdf_path),
+            "nombre_tokens": nb_tokens
+        })
+        logging.info({
+            "titre": f"Chunk {i+1}",
+            "contenu": chunk_text,
+            "page": None,
+            "nom_fichier": os.path.basename(pdf_path),
+            "nombre_tokens": nb_tokens
+        })
     logging.info("Extraction et reconstruction terminées !")
     return json_data, prefix, titre
-        
+
+
 def generate_questions_truth(text, nb_tokens):
     n = nb_tokens // 512 + 1
     try:
@@ -381,14 +296,15 @@ def generate_questions_truth(text, nb_tokens):
 
         content = response.choices[0].message.content
 
-        # ➤ Si le retour est du JSON sous forme de string, le parser
+        # Si le retour est du JSON sous forme de string, le parser
         try:
             llm_answer = json.loads(content)
         except json.JSONDecodeError:
             logging.warning(f"Réponse LLM non parseable en JSON :\n{content}")
             return {}
-        
+
         llm_answer = json.loads(response.choices[0].message.content)
+        logging.info(f"question truth {llm_answer}")
         return llm_answer
     except Exception as e:
         logging.info(f"Erreur lors de la génération des questions/réponses : {e}")
@@ -403,6 +319,7 @@ def transform_questions_answers(questions_answers):
     for key, value in questions_answers.items():
         for question, answer in value.items():
             transformed.append({"question": question, "réponse": answer})
+            logging.info(f"Q/A:{question} / {answer}")
     return transformed
 
 
