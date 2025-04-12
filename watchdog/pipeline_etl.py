@@ -155,18 +155,19 @@ def remove_file_from_database(file_name):
 
     try:
         # Supprimer les chunks et Q/A associées en cascade
-        cur.execute("""
-            DELETE FROM aide_ligne_fichier WHERE nom_fichier = %s RETURNING id_source;
-        """, (file_name,))
-        
-        deleted_source = cur.fetchone()
-        
-        if deleted_source:
-            logging.info(f"Suppression réussie en base pour {file_name}")
-        else:
-            logging.info(f"Aucun fichier trouvé en base pour {file_name}, peut-être déjà supprimé.")
+        with psycopg2.connect(**DB_CONFIG) as conn:
+            with conn.cursor() as cur:
+                cur.execute("""
+                    DELETE FROM aide_ligne_fichier WHERE nom_fichier = %s RETURNING id_source;
+                    """, (file_name,))
 
-        conn.commit()
+                deleted_source = cur.fetchone()
+
+                if deleted_source:
+                    logging.info(f"Suppression réussie en base pour {file_name}")
+                else:
+                    logging.info(f"Aucun fichier trouvé en base pour {file_name}, peut-être déjà supprimé.")
+
     except Exception as e:
         logging.info(f"Erreur lors de la suppression : {e}")
     finally:

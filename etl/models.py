@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from typing import List
+from typing import List, Optional
 from pydantic import BaseModel
 
 # route /dataset
@@ -39,4 +39,19 @@ class ChunkOnly(BaseModel):
     contenu: str
     page: int
     nombre_tokens: int
+    id_source: int
+
+# route 6 
+
+class QAWithChunkItem(BaseModel):
+    question: str
+    response: str
+    context: str
+
+# route 7
+
+class ChunkItem(BaseModel):
+    id_chunk: int
+    contenu: str
+    page: Optional[int]
     id_source: int

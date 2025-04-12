@@ -3,7 +3,7 @@ import psycopg2
 from psycopg2.extras import RealDictCursor
 from typing import List
 import os
-from models import FichierItem, DatasetItem, ChunkWithQA, ChunkOnly, QAItem
+from models import FichierItem, DatasetItem, ChunkWithQA, ChunkOnly, QAItem, QAWithChunkItem, ChunkItem
 
 app = FastAPI(
     title="ETL API",
@@ -57,7 +57,7 @@ def get_dataset():
         with conn.cursor() as cur:
             cur.execute("SELECT question, réponse as response FROM aide_ligne_qa;")
             return cur.fetchall()
-            # return [{"question": row["question"], "response": row["réponse"]} for row in rows]
+            # return [{"question": row["question"],"context":row[' "response": row["réponse"]} for row in rows]
 
 
 
@@ -109,4 +109,49 @@ def get_chunks_by_file_id(id: int):
                 WHERE id_source = %s;
             """, (id,))
             return cur.fetchall()
+
+# ----------- ROUTE 6 : /qa ----------- #
+
+@app.get("/qa", response_model=List[QAWithChunkItem], summary="Q/R + Contexte", tags=["QA"])
+def get_qa_with_context():
+    """Retourne les questions, réponses, et contexte associé (chunk)"""
+    with get_connection() as conn:
+        with conn.cursor() as cur:
+            cur.execute("""
+                SELECT qa.question, qa.réponse as response, c.contenu as context
+                FROM aide_ligne_qa qa
+                JOIN aide_ligne_chunk c ON qa.id_chunk = c.id_chunk;
+            """)
+            rows = cur.fetchall()
+            return [
+                {
+                    "question": r["question"],
+                    "response": r["response"],
+                    "context": r["context"]
+                }
+                for r in rows
+            ]
+
+
+# ----------- ROUTE 7 : /chunks ----------- #
+
+@app.get("/chunks", response_model=List[ChunkItem], summary="Chunks disponibles", tags=["Chunks"])
+def get_chunks():
+    """Retourne tous les chunks présents en base avec leur contenu et métadonné.es"""
+    with get_connection() as conn:
+        with conn.cursor() as cur:
+            cur.execute("""
+                SELECT id_chunk, contenu, page, id_source
+                FROM aide_ligne_chunk;
+            """)
+            rows = cur.fetchall()
+            return [
+                {
+                    "id_chunk": r["id_chunk"],
+                    "contenu": r["contenu"],
+                    "page": r["page"],
+                    "id_source": r["id_source"]
+                }
+                for r in rows
+            ]
 

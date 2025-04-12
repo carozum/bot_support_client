@@ -29,6 +29,40 @@ services:
       - ./data-brute:/app/data-brute
     env_file:
       - .env
+    networks:
+      - monitoring    # expose /metrics grâce à Instrumentator()
+      - backend
+
+
+  prometheus:   # Scrape /metrics de app
+    image: prom/prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    depends_on:
+      - app
+    networks:
+      - monitoring
+
+
+  grafana:      # Visualise les métriques Prometheus
+    image: grafana/grafana
+    ports:
+      - "3000:3000"
+    depends_on:
+      - prometheus
+    networks:
+      - monitoring
+
+
+  stt:
+    build: ./stt
+    container_name: stt-service
+    ports:
+      - "8001:8001"
+    networks:
+      - backend
 
 
   app-test:
@@ -62,3 +96,8 @@ services:
 
 volumes:
   pgdata:
+
+
+networks:
+  monitoring:
+  backend:

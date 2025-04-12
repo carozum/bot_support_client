@@ -1,4 +1,5 @@
-from fastapi import FastAPI, UploadFile, File, Request, Form, Depends, HTTPException
+from prometheus_fastapi_instrumentator import Instrumentator
+from fastapi import FastAPI, UploadFile, File, Request, Form, Depends, HTTPException, status
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
@@ -14,7 +15,7 @@ from typing import Optional
 ENV = os.getenv("ENV", "prod")
 
 if ENV == "test":
-     from app.services import openai_service
+     from services import openai_service
 else:
      from services import openai_service
 
@@ -24,6 +25,7 @@ app = FastAPI(
     description="API pour uploader des fichiers, visualiser la liste des fichiers uploadés et interroger le modèle",
     version="1.0.0"
 )
+Instrumentator().instrument(app).expose(app)
 
 # Dossier courant du fichier main.py
 BASE_DIR = Path(__file__).resolve().parent
@@ -73,6 +75,24 @@ async def upload_file(file: UploadFile = File(...), credentials: HTTPBasicCreden
     with destination.open("wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
     return RedirectResponse(url="/admin", status_code=303)
+
+
+@app.post("/delete", summary="Supprimer un fichier", tags=["Admin"])
+async def delete_file(filename: str = Form(...), credentials: HTTPBasicCredentials = Depends(authenticate)):
+    # Protection contre chemins relatifs malveillants
+    safe_filename = os.path.basename(filename)
+    file_path = DATA_BRUTE_DIR / safe_filename
+
+    if file_path.exists():
+        file_path.unlink()  # Ceci déclenchera le watchdog
+    else:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Fichier non trouvé"
+        )
+
+    return RedirectResponse(url="/admin", status_code=303)
+
 
 
 

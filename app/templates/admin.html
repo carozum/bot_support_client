@@ -2,11 +2,19 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Upload PDF – Admin</title>
+  <title>Interface d'administration</title>
 </head>
 <body>
 
-  <h1>Upload d’un fichier PDF</h1>
+  <nav>
+    <a href="/admin">Admin</a> |
+    <a href="/chat">Chat</a>
+  </nav>
+
+
+  <h1>Interface d'administration</h1>
+
+  <h2>Upload d’un fichier PDF</h2>
 
   <form action="/upload" enctype="multipart/form-data" method="post">
     <input type="file" name="file" accept="application/pdf" required>
@@ -16,11 +24,16 @@
   <h2>Fichiers déjà présents dans data-brute :</h2>
     <ul>
       {% for file in files %}
-        <li>{{ file }}</li>
+        <li>{{ file }}
+          <form method="post" action="{{ url_for('delete_file') }}" style="display:inline;">
+            <input type="hidden" name="filename" value="{{ file }}">
+            <button type="submit">Supprimer</button>
+          </form>
+        </li>
       {% else %}
         <li>Aucun fichier pour le moment.</li>
       {% endfor %}
     </ul>
-
 </body>
 </html>
+

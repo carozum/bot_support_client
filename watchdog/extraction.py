@@ -12,6 +12,8 @@ from transformers import AutoTokenizer
 import json
 import logging
 from pathlib import Path
+from semantic_chunkers import StatisticalChunker
+from semantic_router.encoders import HuggingFaceEncoder
 
 huggingface = os.environ['HUGGING_FACE_TOKEN']
 # Charger le tokenizer du modèle Mistral 7B
@@ -20,6 +22,13 @@ tokenizer = AutoTokenizer.from_pretrained("mistralai/Mistral-7B-Instruct-v0.3", 
 openai.api_key = os.environ["OPENAI_API_KEY"]
 client = OpenAI()
 
+encoder = HuggingFaceEncoder(name="sentence-transformers/all-MiniLM-L6-v2")
+chunker = StatisticalChunker(
+        threshold_adjustment=0.1,
+        encoder = encoder,
+        min_split_tokens = 300,
+        max_split_tokens=600
+        )
 
 def encode_image_to_base64(image_bytes):
     """Encode une image en Base64 pour l'envoyer à OpenAI."""
@@ -179,7 +188,14 @@ def generate_content_from_pdf(pdf_path):
             xref = img[0]  # Identifiant unique de l'image
             base_image = doc.extract_image(xref)
             image_bytes = base_image["image"]
-            bbox = page.get_image_rects(xref)[0]  # Obtenir la position de l'image (x1, y1, x2, y2)
+            # ✅ Protection contre images sans bbox
+            rects = page.get_image_rects(xref)
+            if not rects:
+                logging.warning(f"Aucune position trouvée pour l'image xref={xref} à la page {page_num + 1}")
+            continue  # on passe à l'image suivante
+        
+            bbox = rects[0]  # Obtenir la position de l'image (x1, y1, x2, y2)
+
             
             # Charger l'image avec PIL
             image = Image.open(io.BytesIO(image_bytes))
@@ -242,16 +258,42 @@ def generate_content_from_pdf(pdf_path):
             
         match = re.match(r"(\d+\.\d+(?:\.\d+)*)(.*)", line)
         if match:
-            if current_section:
+            section = match.group(0).strip()
+
+            if section == current_section:
+                continue
+
+            if current_section and current_content:
                 cleaned_content = clean_chunk_content("\n".join(current_content), titre)
-                json_data.append({
-                    "titre": current_section,
-                    "contenu": cleaned_content,
-                    "page": section_start_page,
-                    "nom_fichier": os.path.basename(pdf_path),
-                    "nombre_tokens": calculate_tokens(cleaned_content)
-                })
-            current_section = match.group(0)
+    
+                # --- Nouveau : découpage sémantique en sous-chunks
+                chunks = chunker(docs=[cleaned_content])
+                sub_chunks = [chunk.splits for chunk in chunks if hasattr(chunk, "splits")]
+
+                # --- Vérification : éviter l'erreur list index out of range
+                if not sub_chunks or not sub_chunks[0]:
+                    logging.warning(f"ucun chunk généré pour : {current_section} → contenu ignoré.")
+                else :
+
+                    for i, splits in enumerate(sub_chunks[0]):
+                        chunk_text = " ".join(splits).strip()
+
+                        if not chunk_text:
+                            continue
+
+                        nb_tokens = calculate_tokens(chunk_text)
+                        if nb_tokens > 600:
+                            logging.warning(f"Chunk trop long : {nb_tokens} tokens - titre: {current_section} - chunk {i+1}")
+
+                        json_data.append({
+                            "titre": f"{current_section} - chunk {i+1}",
+                            "contenu": chunk_text,
+                            "page": section_start_page,
+                            "nom_fichier": os.path.basename(pdf_path),
+                            "nombre_tokens": nb_tokens
+                        })
+
+            current_section = section
             current_content = []
             section_start_page = current_page
             first_title_found = True
@@ -260,31 +302,61 @@ def generate_content_from_pdf(pdf_path):
                 current_content.append(line)
             else:
                 pre_title_text.append(line)
-                
-                
-    # Ajouter le texte avant le premier titre au JSON
+
+
+    # Ajouter le texte avant le premier titre au JSON - PREMIER BLOC
     if pre_title_text:
         # logging.info(pre_title_text)
         cleaned_pre_title_text = clean_chunk_content("\n".join(pre_title_text), titre)
-        json_data.append({
-            "titre": "Introduction",
-            "contenu": cleaned_pre_title_text,
-            "page": 1,
-            "nom_fichier": os.path.basename(pdf_path),
-            "nombre_tokens": calculate_tokens(cleaned_pre_title_text)
-        })      
+        chunks = chunker(docs=[cleaned_pre_title_text])
+        sub_chunks = [chunk.splits for chunk in chunks if hasattr(chunk, "splits")]
 
-    if current_section:
+        if not sub_chunks or not sub_chunks[0]:
+            logging.warning("Aucun chunk généré pour l’introduction.")
+        else:
+
+            for i, splits in enumerate(sub_chunks[0]):
+                chunk_text = " ".join(splits).strip()
+
+                if not chunk_text:
+                    continue
+
+                nb_tokens = calculate_tokens(chunk_text)
+                if nb_tokens > 600:
+                    logging.warning(f"hunk trop long : {nb_tokens} tokens - titre: {current_section} - chunk {i+1}")
+
+                if not chunk_text:
+                    continue
+                json_data.append({
+                    "titre": f"Introduction - chunk {i+1}",
+                    "contenu": chunk_text,
+                    "page": 1,
+                    "nom_fichier": os.path.basename(pdf_path),
+                    "nombre_tokens": nb_tokens
+                })
+
+    if current_section and current_content:
         cleaned_content = clean_chunk_content("\n".join(current_content), titre)
-        json_data.append({
-            "titre": current_section,
-            "contenu": cleaned_content,
-            "page": section_start_page,
-            "nom_fichier": os.path.basename(pdf_path),
-            "nombre_tokens": calculate_tokens(cleaned_content)
-        })
+        chunks = chunker(docs=[cleaned_content])
+        sub_chunks = [chunk.splits for chunk in chunks if hasattr(chunk, "splits")]
 
-   
+        if not sub_chunks or not sub_chunks[0]:
+            logging.warning(f"Aucun chunk généré pour : {current_section} → contenu ignoré.")
+        else:
+            for i, splits in enumerate(sub_chunks[0]):
+                chunk_text = " ".join(splits).strip()
+                if not chunk_text:
+                    continue
+                nb_tokens = calculate_tokens(chunk_text)
+                if nb_tokens > 600:
+                    logging.warning(f"Chunk trop long : {nb_tokens} tokens - titre: {current_section} - chunk {i+1}")
+                json_data.append({
+                    "titre": f"{current_section} - chunk {i+1}",
+                    "contenu": chunk_text,
+                    "page": section_start_page,
+                    "nom_fichier": os.path.basename(pdf_path),
+                    "nombre_tokens": nb_tokens
+                })
 
     logging.info("Extraction et reconstruction terminées !")
     return json_data, prefix, titre
@@ -306,12 +378,21 @@ def generate_questions_truth(text, nb_tokens):
             ],
             response_format={"type": "json_object"},
         )
+
+        content = response.choices[0].message.content
+
+        # ➤ Si le retour est du JSON sous forme de string, le parser
+        try:
+            llm_answer = json.loads(content)
+        except json.JSONDecodeError:
+            logging.warning(f"Réponse LLM non parseable en JSON :\n{content}")
+            return {}
         
         llm_answer = json.loads(response.choices[0].message.content)
         return llm_answer
     except Exception as e:
         logging.info(f"Erreur lors de la génération des questions/réponses : {e}")
-        return []
+        return {}
 
 
 def transform_questions_answers(questions_answers):

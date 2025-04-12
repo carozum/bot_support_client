@@ -1,8 +1,8 @@
 # Core AI / NLP
 openai>=1.2.0
 transformers>=4.36.0
-accelerate  # nécessaire pour certains modèles HF
-torch       # pour tokenizer parfois requis, dépend du modèle HF
+accelerate
+torch       
 protobuf
 
 # Vision & OCR
@@ -21,5 +21,10 @@ psycopg2-binary
 python-dotenv
 watchdog
 
-# CLI/UX (facultatif mais recommandé si tu ajoutes des interfaces ou tests)
-rich  # pour avoir de jolis logs dans le terminal (optionnel)
+# Semantic chunker
+semantic-router
+semantic-chunkers
+semantic-router[processing]
+
+# CLI/UX
+rich  

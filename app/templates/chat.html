@@ -4,11 +4,21 @@
     <title>Chatbot</title>
 </head>
 <body>
+
+    <nav>
+      <a href="/admin">Admin</a> |
+      <a href="/chat">Chat</a>
+    </nav>
+
     <h1>Pose ta question</h1>
     <form method="post">
-        <input type="text" name="question" placeholder="Ta question ici..." required>
+        <label for="question">Ta question :</label><br>
+        <input type="text" name="question" id="questionInput" style="width: 70%;" required><br><br>
         <button type="submit">Envoyer</button>
+        <button type="button" id="recordBtn">🎙️ Parler</button>
     </form>
+
+    <p><strong>Transcription :</strong> <span id="transcription"></span></p>
 
     {% if question %}
         <h2>Question :</h2>
@@ -19,5 +29,51 @@
         <h2>Réponse :</h2>
         <p>{{ answer }}</p>
     {% endif %}
-</body>
+    <script>
+      const recordBtn = document.getElementById("recordBtn");
+      const transcriptionBox = document.getElementById("transcription");
+      const questionInput = document.getElementById("questionInput");
+
+      let mediaRecorder;
+      let audioChunks = [];
+
+      recordBtn.addEventListener("click", async () => {
+        if (mediaRecorder && mediaRecorder.state === "recording") {
+          mediaRecorder.stop();
+          recordBtn.innerText = "🎙️ Parler";
+        } else {
+          const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+          mediaRecorder = new MediaRecorder(stream);
+          audioChunks = [];
+
+          mediaRecorder.ondataavailable = e => audioChunks.push(e.data);
+
+          mediaRecorder.onstop = async () => {
+            const blob = new Blob(audioChunks, { type: 'audio/webm' });
+            const formData = new FormData();
+            formData.append("file", blob, "speech.webm");
+
+            transcriptionBox.innerText = "Transcription en cours...";
+
+            try {
+              const response = await fetch("/stt", {
+                method: "POST",
+                body: formData
+              });
+              const data = await response.json();
+              transcriptionBox.innerText = data.text || "(pas de texte détecté)";
+              questionInput.value = data.text || "";
+            } catch (error) {
+              transcriptionBox.innerText = "Erreur lors de la transcription";
+              console.error("Erreur STT :", error);
+            }
+          };
+
+          mediaRecorder.start();
+          recordBtn.innerText = "🛑 Stop";
+        }
+      });
+    </script>
+  </body>
 </html>
+
