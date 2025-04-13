@@ -25,7 +25,7 @@
     <ul>
       {% for file in files %}
         <li>{{ file }}
-          <form method="post" action="{{ url_for('delete_file') }}" style="display:inline;">
+          <form method="post" action="/delete" style="display:inline;">
             <input type="hidden" name="filename" value="{{ file }}">
             <button type="submit">Supprimer</button>
           </form>
