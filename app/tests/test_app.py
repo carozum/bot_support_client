@@ -6,8 +6,8 @@ from pathlib import Path
 ENV = os.getenv("ENV", "prod")
 
 if ENV == "test":
-    from main import openai_service  # pour pytest ou exécution spéciale
-    from main import app
+    from app.main import openai_service  # pour pytest ou exécution spéciale
+    from app.main import app
 else:
     from main import openai_service
     from main import app
