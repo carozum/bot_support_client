@@ -15,7 +15,7 @@ from typing import Optional
 ENV = os.getenv("ENV", "prod")
 
 if ENV == "test":
-     from services import openai_service
+     from app.services import openai_service
 else:
      from services import openai_service
 
