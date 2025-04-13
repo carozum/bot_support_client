@@ -31,6 +31,10 @@ TMP_DIR = Path("/tmp/stt")
 TMP_DIR.mkdir(parents=True, exist_ok=True)
 
 
+@app.get("/")
+def home():
+    return {"message": "STT Service is running"}
+
 
 @app.post("/stt")
 async def transcribe(file: UploadFile = File(...)):

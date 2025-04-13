@@ -36,15 +36,16 @@ services:
 
   prometheus:   # Scrape /metrics de app
     image: prom/prometheus
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    container_name: prometheus
     ports:
       - "9090:9090"
     depends_on:
       - app
     networks:
       - monitoring
-
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus-data:/prometheus
 
   grafana:      # Visualise les métriques Prometheus
     image: grafana/grafana
@@ -54,7 +55,11 @@ services:
       - prometheus
     networks:
       - monitoring
-
+    volumes:
+      - grafana-storage:/var/lib/grafana
+    environment:
+      - GF_SERVER_ROOT_URL=https://customer.bot-support.fr/grafana
+      - GF_SECURITY_ALLOW_EMBEDDING=true
 
   stt:
     build: ./stt
@@ -96,7 +101,8 @@ services:
 
 volumes:
   pgdata:
-
+  grafana-storage:
+  prometheus-data:
 
 networks:
   monitoring:
