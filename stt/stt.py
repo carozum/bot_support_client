@@ -7,7 +7,9 @@ import os
 import subprocess
 import uuid
 from pathlib import Path
-
+import logging
+import openai
+openai.api_key = os.getenv("OPENAI_API_KEY", "fake-key-for-tests")
 
 app = FastAPI()
 
@@ -29,6 +31,32 @@ model = Model(MODEL_PATH)
 # Dossier temporaire pour stocker les fichiers audio
 TMP_DIR = Path("/tmp/stt")
 TMP_DIR.mkdir(parents=True, exist_ok=True)
+
+
+def clean_transcription(raw_text):
+    """ Fonction qui ajoute la ponctuation dans le rendu du STT Vosk"""
+    prompt = (
+        "Tu es un assistant chargé de corriger des transcriptions audio. "
+        "Voici une transcription brute sans ponctuation ni majuscule. "
+        "Ajoute la ponctuation, les majuscules, corrige les fautes éventuelles, "
+        "et rends le tout lisible, naturel et fluide :\n\n"
+        f"{raw_text.strip()}"
+    )
+
+    try:
+        response = openai.chat.completions.create(
+            model="gpt-4o",
+            temperature=0.3,
+            messages=[
+                {"role": "system", "content": "Tu es un assistant de transcription."},
+                {"role": "user", "content": prompt}
+            ]
+        )
+        logging.info(f"clean transcription : {response.choices[0].message.content}")
+        return response.choices[0].message.content.strip()
+    except:
+        logging.info("pas de clean transcription")
+        return raw_text
 
 
 @app.get("/")
@@ -74,6 +102,8 @@ async def transcribe(file: UploadFile = File(...)):
         wf.close()
         input_path.unlink(missing_ok=True)
         output_path.unlink(missing_ok=True)
+
+        text = clean_transcription(text)
 
         return {"text": text.strip() or "(aucune transcription détectée)"}
 

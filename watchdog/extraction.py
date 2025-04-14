@@ -277,13 +277,13 @@ def generate_content_from_pdf(pdf_path):
 
 
 def generate_questions_truth(text, nb_tokens):
-    n = nb_tokens // 512 + 1
+    n = nb_tokens // 300 + 1
     try:
         response = client.chat.completions.create(
             model="gpt-4o-mini",
             temperature=0.3,
             messages=[
-                {"role": "system", "content": f"""Tu es un assistant au sein de la société Octime et tu génères des questions réponses sur la base de contenu qui te sont fournis. Tes réponses doivent être détaillées et précises. Tu réponds sous la forme d'une liste de {n} JSON dont le format est le suivant : 
+                {"role": "system", "content": f"""Tu es un assistant au sein de la société Octime qui produit un logiciel de gestion des temps. Tu génères des questions réponses sur la base de contenu qui te sont fournis. Les questions générées doivent ressembler à celles posées par les utilisateurs du produit Octime (l'outil de gestion des temps). Elles sont de format varié. Tes réponses doivent être détaillées, didactiques et précises. Tu réponds sous la forme d'une liste de {n} JSON dont le format est le suivant : 
                 {{
                     "question 1":{{"la question que tu génères":"la réponse que tu génères à ta question}},
                     "question 2":{{"la question que tu génères":"la réponse que tu génères à ta question}},

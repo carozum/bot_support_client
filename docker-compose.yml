@@ -64,6 +64,8 @@ services:
   stt:
     build: ./stt
     container_name: stt-service
+    env_file:
+      - .env
     ports:
       - "8001:8001"
     networks:
