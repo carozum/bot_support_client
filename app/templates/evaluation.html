@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Evaluation et comparaison des modèles</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm mb-4">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="#">Evaluateur / comparateur de modèles</a>
+    <div>
+      <a class="nav-link d-inline px-2" href="/admin">Admin</a>
+      <a class="nav-link d-inline px-2" href="/validation">Validation du dataset</a>
+      <a class="nav-link d-inline px-2" href="/evaluation">Évaluation des modèles</a>
+      <a class="nav-link d-inline px-2" href="/chat">Aide en ligne</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <h1 class="mb-4">Comparer les réponses des modèles</h1>
+
+  <form method="post" class="mb-4">
+    <label for="question" class="form-label">Votre question :</label>
+    <div class="input-group">
+      <input type="text" class="form-control" name="question" id="question" placeholder="Posez votre question..." required>
+      <button type="submit" class="btn btn-primary">Comparer</button>
+    </div>
+  </form>
+
+  {% if question %}
+    <h4 class="mb-4">Question posée : <em>{{ question }}</em></h4>
+
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+      {% for model, response in responses.items() %}
+        <div class="col">
+          <div class="card h-100 shadow-sm">
+            <div class="card-header">
+              <span class="badge bg-{{ model_colors[model] }}">{{ model }}</span>
+            </div>
+            <div class="card-body">
+              <p class="card-text">{{ response }}</p>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>
+
+<footer class="text-center mt-5 text-muted small">
+  Evaluateur / comparateur de modèles — Expérimental
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

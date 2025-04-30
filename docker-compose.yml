@@ -60,6 +60,9 @@ services:
     environment:
       - GF_SERVER_ROOT_URL=https://customer.bot-support.fr/grafana
       - GF_SECURITY_ALLOW_EMBEDDING=true
+      - GF_AUTH_BASIC_ENABLED=false                # désactive la connexion utilisateur Grafana
+      - GF_AUTH_ANONYMOUS_ENABLED=true             # permet l'accès anonyme
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin           # ou Viewer pour restreindre les droits
 
   stt:
     build: ./stt

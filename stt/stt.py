@@ -36,11 +36,11 @@ TMP_DIR.mkdir(parents=True, exist_ok=True)
 def clean_transcription(raw_text):
     """ Fonction qui ajoute la ponctuation dans le rendu du STT Vosk"""
     prompt = (
-        "Tu es un assistant chargé de corriger des transcriptions audio. "
-        "Voici une transcription brute sans ponctuation ni majuscule. "
-        "Ajoute la ponctuation, les majuscules, corrige les fautes éventuelles, "
-        "et rends le tout lisible, naturel et fluide :\n\n"
-        f"{raw_text.strip()}"
+        "Tu es un assistant chargé de nettoyer des transcriptions audio d'un utilisateur qui parle à un assistant. "
+        "La transcription n'a ni majuscules, ni ponctuation, ni structure. "
+        "Ton travail est UNIQUEMENT de corriger les fautes, ajouter la ponctuation, remettre les majuscules. "
+        "Ne complète rien, ne réponds pas, ne reformule pas. Rends exactement le même contenu, juste propre et lisible.\n\n"
+        f"Texte brut : {raw_text.strip()}"
     )
 
     try:

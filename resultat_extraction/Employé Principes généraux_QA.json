@@ -1,184 +1,194 @@
 [
     {
         "titre": "Chunk 1",
-        "contenu": "6 Principes généraux 1 Principes généraux Le module OCTIME WEB permet à un utilisateur, après identification via un intranet, de : ·         consulter : Ø       le statut de ses demandes qu’elles soient  acceptées, refusées ou en attente de traitement, Ø       son planning, le détail de sa journée, la valeur de ses compteurs (solde Congés payés, RTT…) ·         déclarer : Ø       ses absences ou suppression d’absence, Ø       un temps travaillé, Ø       un horaire exceptionnel ou un horaire à la carte ·         badger : Ø       via une badgeuse virtuelle Chaque collaborateur est rattaché dans OCTIME à un supérieur hiérarchique (le valideur), chargé de valider ou refuser les demandes de ce collaborateur. Afin de parfaire l’échange d’informations, un échange de courrier électronique peut être paramétré entre le collaborateur et le valideur. 11.0.0-0 1.1 Identification Cet écran permet à l’utilisateur de se connecter au module OCTIME WEB 7 Principes généraux [Image: Page de connexion CCTIME avec champs pour l'identifiant et le mot de passe.] Le collaborateur doit choisir la société dont il dépend (sélection du dossier), s’il n’existe qu’une société celle-ci  sera automatiquement affichée. Chaque collaborateur s’identifie dans ce module grâce à son identifiant  et son mot de passe définis dans sa fiche personnel d’OCTIME. [Bouton: Bouton \"Se connecter\"] Cliquer sur pour valider et accéder au module OCTIME WEB Si le collaborateur a oublié son mot de passe, celui-ci peut être regénéré et immédiatement envoyé",
+        "contenu": "Le module OCTIME WEB permet à un utilisateur, après identification via un intranet, de : · consulter : Ø le statut de ses demandes qu’elles soient acceptées, refusées ou en attente de traitement, Ø son planning, le détail de sa journée, la valeur de ses compteurs (solde Congés payés, RTT…) · déclarer : Ø ses absences ou suppression d’absence, Ø un temps travaillé, Ø un horaire exceptionnel ou un horaire à la carte · badger : Ø via une badgeuse virtuelle Chaque collaborateur est rattaché dans OCTIME à un supérieur hiérarchique (le valideur), chargé de valider ou refuser les demandes de ce collaborateur. Afin de parfaire l’échange d’informations, un échange de courrier électronique peut être paramétré entre le collaborateur et le valideur. 11.0.0-0 1.1 Identification Cet écran permet à l’utilisateur de se connecter au module OCTIME WEB [Image: Page de connexion de CCTIME avec champs pour identifiant et mot de passe, et un menu déroulant \"Documentation11\".] Le collaborateur doit choisir la société dont il dépend (sélection du dossier), s’il n’existe qu’une société celle-ci sera automatiquement affichée. Chaque collaborateur s’identifie dans ce module grâce à son identifiant et son mot de passe définis dans sa fiche personnel d’OCTIME. [Bouton: Bouton \"Se connecter\".] Cliquer sur pour valider et accéder au module OCTIME WEB Si le collaborateur a oublié son mot de passe, celui-ci peut être regénéré et immédiatement envoyé [Bouton:",
         "page": null,
         "nom_fichier": "Employé Principes généraux.pdf",
-        "nombre_tokens": 478,
+        "nombre_tokens": 460,
         "questions_reponses": [
             {
-                "question": "Comment puis-je consulter le statut de mes demandes dans le module OCTIME WEB ?",
-                "réponse": "Pour consulter le statut de vos demandes dans le module OCTIME WEB, vous devez d'abord vous identifier via l'intranet. Une fois connecté, vous pourrez accéder à la section dédiée où vous pourrez voir le statut de vos demandes, qu'elles soient acceptées, refusées ou en attente de traitement."
+                "question": "Comment puis-je consulter le statut de mes demandes dans OCTIME WEB ?",
+                "réponse": "Pour consulter le statut de vos demandes dans OCTIME WEB, vous devez d'abord vous identifier via l'intranet. Une fois connecté, vous pourrez accéder à la section dédiée où vous pourrez voir si vos demandes sont acceptées, refusées ou en attente de traitement."
+            },
+            {
+                "question": "Quelles sont les actions que je peux effectuer dans le module OCTIME WEB ?",
+                "réponse": "Dans le module OCTIME WEB, vous pouvez effectuer plusieurs actions : consulter votre planning et le détail de votre journée, déclarer vos absences ou temps travaillé, badger via une badgeuse virtuelle, et gérer vos horaires exceptionnels ou à la carte."
             },
             {
                 "question": "Que faire si j'ai oublié mon mot de passe pour accéder à OCTIME WEB ?",
-                "réponse": "Si vous avez oublié votre mot de passe pour accéder à OCTIME WEB, vous pouvez le régénérer. Il vous suffira de suivre le lien ou l'option prévue pour la récupération de mot de passe sur l'écran de connexion. Un nouveau mot de passe sera immédiatement envoyé à l'adresse e-mail associée à votre compte."
+                "réponse": "Si vous avez oublié votre mot de passe pour accéder à OCTIME WEB, vous pouvez le régénérer. Il vous suffit de suivre les instructions sur l'écran de connexion, où vous aurez la possibilité de demander un nouveau mot de passe qui sera immédiatement envoyé à votre adresse e-mail."
             }
         ]
     },
     {
         "titre": "Chunk 2",
-        "contenu": "[Bouton: Lien \"Mot de passe oublié ?\"] dans sa boite aux lettres par mail en cliquant sur Bien sûr cette manipulation ne peut être effectuée que si l’adresse mail du collaborateur est renseignée dans sa fiche personnelle d’Octime. Cette option peut-être désactivé en ajoutant la ligne suivante dans le fichier Octime.ini [WEB] RappelMotDePasse=N [Bouton: Drapeau français pour sélectionner la langue.] Les boutons permettent de choisir la langue de l'application, si la licence comprend le multi-langue. 8 Principes généraux 1.2 Bandeau Ce bandeau est commun à touts Les pages de l'application il donne accès à quelques outils. [Image: Barre de navigation du site web OCC TIME avec les options : \"Menu\", \"Planning Individuel\", \"Planning de Service\", \"Dem\".] Un clic sur le logo Octime ou le menu Accueil raménera le collaborateur au portail. [Bouton: Texte bleu sur fond bleu indiquant \"THYLLA\".] Le nom du dossier est rappelé ainsi que l'identité du collaborateur connecté. Si le collaborateur n'est pas lié à) un compte manager, un clic sur son identité permet d'ouvrir un menu qui permet d'accéder à la page des informations personnelles et de se déconnecter. 158 [Image: Menu déroulant du profil utilisateur avec photo de profil circulaire et nom \"Emelyne CHARMOZ\". Deux options visibles.] Si le collaborateur est lié à un compte manager, un clic sur son nom permet d'accéder à un menu [Image: Menu déroulant avec les options : \"Espace manager\", \"Mon profil\",] qui permet de basculer vers onscompte manager. [Icône: Icône de notification avec point d'exclamation et badge rouge,] Les icônes suivantes permettent un accès à :",
+        "contenu": "] Cliquer sur pour valider et accéder au module OCTIME WEB Si le collaborateur a oublié son mot de passe, celui-ci peut être regénéré et immédiatement envoyé [Bouton:. Lien : \"Mot de passe oublié ?\"] dans sa boite aux lettres par mail en cliquant sur Bien sûr cette manipulation ne peut être effectuée que si l’adresse mail du collaborateur est renseignée dans sa fiche personnelle d’Octime. Cette option peut-être désactivé en ajoutant la ligne suivante dans le fichier Octime.ini [WEB] RappelMotDePasse=N [Bouton: Drapeaux pour sélectionner la langue : français, anglais.] Les boutons permettent de choisir la langue de l'application, si la licence comprend le multi-langue. 1.2 Bandeau Ce bandeau est commun à touts Les pages de l'application il donne accès à quelques outils. [Image: Interface utilisateur de l'application OCTIME : menu accessible en haut à gauche via une icône de trois lignes horizontales.] Un clic sur le logo Octime ou le menu Accueil raménera le collaborateur au portail. [Bouton: \"Texte 'THYLLA' sur fond bleu.] Le nom du dossier est rappelé ainsi que l'identité du collaborateur connecté. Si le collaborateur n'est pas lié à) un compte manager, un clic sur son identité permet d'ouvrir un menu qui permet d'accéder à la page des informations personnelles et de se déconnecter. 158 [Image: Menu déroulant du profil utilisateur avec la photo et le nom en haut, suivi des options \"Mon profil\".] Si le collaborateur est lié à un compte manager, un clic sur son nom permet d'accéder à un menu [Image: Interface utilisateur avec un menu déroulant comprenant : \"Espace manager\", \"Mon profil\", \"Se déconnecter\".] qui permet de basculer vers onscompte manager. [Icône: - Icône \"P\" - Icône de carte] Les icônes suivantes permettent un accès à : [Icône: Icône de notification avec trois nouveaux messages.] La liste des demandes de l'employé, la pastille indique les nombre de demandes en attente depuis une durée définie par les paramètres. [Icône: Icône de cloche avec pastille bleue] La page des notifications, la pastille indique le nombre de notifcation en attente. [Icône: Icône de document avec un badge vert indiquant 5.] La boîte des éditions , la pastille indique le nombre d'édition non lue.",
         "page": null,
         "nom_fichier": "Employé Principes généraux.pdf",
-        "nombre_tokens": 503,
+        "nombre_tokens": 695,
         "questions_reponses": [
             {
-                "question": "Comment réinitialiser mon mot de passe sur Octime ?",
-                "réponse": "Pour réinitialiser votre mot de passe sur Octime, vous devez cliquer sur le lien 'Mot de passe oublié ?' dans votre boîte aux lettres par mail. Cependant, cette manipulation ne peut être effectuée que si votre adresse mail est renseignée dans votre fiche personnelle d’Octime. Si cette option est désactivée, vous devez ajouter la ligne suivante dans le fichier Octime.ini : [WEB] RappelMotDePasse=N."
+                "question": "Comment un collaborateur peut-il récupérer son mot de passe oublié dans Octime ?",
+                "réponse": "Un collaborateur peut récupérer son mot de passe oublié en cliquant sur le lien 'Mot de passe oublié ?'. Cette action enverra un email avec un nouveau mot de passe à l'adresse mail renseignée dans sa fiche personnelle d'Octime. Il est important que l'adresse email soit correctement renseignée pour que cette opération fonctionne."
+            },
+            {
+                "question": "Est-il possible de désactiver l'option de rappel de mot de passe dans Octime ?",
+                "réponse": "Oui, il est possible de désactiver l'option de rappel de mot de passe en ajoutant la ligne suivante dans le fichier Octime.ini : [WEB] RappelMotDePasse=N. Cela empêchera les collaborateurs de régénérer leur mot de passe via l'email."
             },
             {
                 "question": "Comment changer la langue de l'application Octime ?",
-                "réponse": "Pour changer la langue de l'application Octime, vous devez utiliser le bouton représentant un drapeau français, qui vous permet de sélectionner la langue. Cette option est disponible uniquement si votre licence comprend le multi-langue."
+                "réponse": "Pour changer la langue de l'application Octime, il suffit de cliquer sur les boutons disponibles qui permettent de sélectionner la langue souhaitée, comme le français ou l'anglais, à condition que la licence de l'application inclut le multi-langue."
+            },
+            {
+                "question": "Que faire si un collaborateur veut accéder à ses informations personnelles dans Octime ?",
+                "réponse": "Un collaborateur peut accéder à ses informations personnelles en cliquant sur son identité dans le bandeau de l'application. Si le collaborateur n'est pas lié à un compte manager, cela ouvrira un menu où il pourra choisir 'Mon profil' pour consulter et modifier ses informations personnelles."
             }
         ]
     },
     {
         "titre": "Chunk 3",
-        "contenu": "9 Principes généraux [Icône: Icône de notification de message, 3 messages.] La liste des demandes de l'employé, la pastille indique les nombre de demandes en attente depuis une durée définie par les paramètres. [Icône: Icône de cloche avec notification \"1\"] La page des notifications, la pastille indique le nombre de notifcation en attente. [Icône: Icône de document avec notification de 5 nouveaux éléments.] La boîte des éditions , la pastille indique le nombre d'édition non lue. 22 [Icône: Icône de notification avec point d'exclamation dans un cercle rouge.] La page de levée d'anomalie, la pastille indique le nombre d'anomalies bloquantes. Quelques pages bénéficient d'un accès direct depuis le bandeau, ces accès dépendent des autorisations qui vous ont été accordées. [Image: Barre de menu avec options : \"MENU\", \"PLANNING INDIVIDUEL\", \"PLANNING DE SERVICE\".] Un clic sur le menu permet d'ouvrir le menu : [Image: Menu d'application avec les options : \"Accueil,\" \"Consultation,\" \"Saisie,\" \"Gestion avancée.] [Icône: \"Signe d'interrogation dans un cercle bleu\" ou simplement \"Ic] Le bouton permet d'accèder à cette documentation. 1.3 Portail Après la connexion le collaborateur arrive sur la page d'accueil, cette page donne accès à tous les programmes. 10 Principes généraux [Image: Voici le texte alternatif nettoyé : \"Interface d'une application de gestion du temps et des absences avec un menu de navigation pour accéder au]",
+        "contenu": "] La boîte des éditions , la pastille indique le nombre d'édition non lue. 22 [Icône: Icône de notification avec point d'exclamation dans un cercle.] La page de levée d'anomalie, la pastille indique le nombre d'anomalies bloquantes. Quelques pages bénéficient d'un accès direct depuis le bandeau, ces accès dépendent des autorisations qui vous ont été accordées. [Image: Barre de navigation bleue avec les options : Menu, Planning Individuel, Planning de Service, Demande d'Abs.] Un clic sur le menu permet d'ouvrir le menu : [Image: Menu de navigation avec la section \"Consultation\" sélectionnée. Affiche une liste d'options.] [Icône: Icône d'aide avec point d'interrogation.] Le bouton permet d'accèder à cette documentation. 1.3 Portail Après la connexion le collaborateur arrive sur la page d'accueil, cette page donne accès à tous les programmes. [Image: Tableau de bord d'application avec un menu en haut à gauche affichant une photo de profil et le nom \"Didier Camp\".] Le bandeau est commun à toutes les pages. 8 Un premier bloc présente les informations concernantle collaborateur, son identité. [Image: Interface utilisateur d'un tableau de bord avec la photo d'un homme et le nom \"Didier Campana\", trois sections visibles.] Ce pavé vous permet un accès rapide à différentes pages en vous rappelant le nombres d'objets concernés : Chaque pastille de cet encart donne accès à des pages différentes : [Bouton: Icône d'enveloppe suivie de \"Mes demandes\"] Cette ligne donne accès à la page des demandes , en rouge seront prés sélectionnées les demandes refusées, en bleu les demandes en attente et en vert les demandes validées.",
         "page": null,
         "nom_fichier": "Employé Principes généraux.pdf",
-        "nombre_tokens": 456,
+        "nombre_tokens": 475,
         "questions_reponses": [
             {
-                "question": "Comment puis-je vérifier le nombre de demandes en attente dans l'application ?",
-                "réponse": "Vous pouvez vérifier le nombre de demandes en attente en consultant la liste des demandes de l'employé. Une pastille s'affiche à côté de cette section, indiquant le nombre de demandes en attente depuis une durée définie par les paramètres."
+                "question": "Que signifie la pastille sur la boîte des éditions ?",
+                "réponse": "La pastille indique le nombre d'éditions non lues. Cela vous permet de savoir rapidement combien d'éditions vous n'avez pas encore consultées."
             },
             {
-                "question": "Que signifie la pastille sur la page de levée d'anomalie ?",
-                "réponse": "La pastille sur la page de levée d'anomalie indique le nombre d'anomalies bloquantes. Cela vous permet de savoir rapidement combien d'anomalies nécessitent votre attention."
+                "question": "Comment accéder à la page de levée d'anomalie ?",
+                "réponse": "Pour accéder à la page de levée d'anomalie, vous devez utiliser le bandeau de navigation. La pastille sur cette page indique le nombre d'anomalies bloquantes que vous devez traiter."
+            },
+            {
+                "question": "Que représente le bloc d'informations sur le collaborateur dans le tableau de bord ?",
+                "réponse": "Le bloc d'informations présente des détails concernant le collaborateur, comme son identité. Il permet également un accès rapide à différentes pages, avec des pastilles indiquant le nombre d'objets concernés, comme les demandes en attente, refusées ou validées."
             }
         ]
     },
     {
         "titre": "Chunk 4",
-        "contenu": "11 Principes généraux Le bandeau est commun à toutes les pages. 8 Un premier bloc présente les informations concernantle collaborateur, son identité. [Image: Profil utilisateur montrant une photo d'identité et le nom \"Didier Campana\".] Ce pavé vous permet un accès rapide à différentes pages en vous rappelant le nombres d'objets concernés : Chaque pastille de cet encart donne accès à des pages différentes : [Bouton: Icône d'enveloppe avec le texte \"Mes demandes\"] Cette ligne donne accès à la page des demandes , en rouge seront prés sélectionnées les demandes refusées, en bleu les demandes en attente et en vert les demandes validées. 30 [Bouton: Icône de cloche avec le texte \"Notifications\",] Cette ligne donne accès à la page des notifications. [Bouton: Icône d'un document avec le texte \"Éditions\" et un cercle] 12 Principes généraux Cette ligne donne accès à la boites des éditions, en rouge (éventuellement)  le nombre d'éditions en erreur, en bleu le nombre d'édition en attente, en vert le nombre d'éditions disponibles. [Bouton: Bouton \"Anomalies\" avec pastille rouge] Cette ligne indique le nombre d'anomalies vous concernant et auxquelles votre administrateur vous a autorisé l'accès., et donne accès à la liste des anomalies . 23 [Icône: \"Menu, icône trois lignes horizontales.] L'accès au menu se fait en cliquant sur le titre [Image: Menu d'application avec les sections \"Accueil\" et \"Consultation\" sur la gauche.] Mon activité Ce widget affiche le planning du jour",
+        "contenu": "] Ce pavé vous permet un accès rapide à différentes pages en vous rappelant le nombres d'objets concernés : Chaque pastille de cet encart donne accès à des pages différentes : [Bouton: Icône d'enveloppe suivie de \"Mes demandes\"] Cette ligne donne accès à la page des demandes , en rouge seront prés sélectionnées les demandes refusées, en bleu les demandes en attente et en vert les demandes validées. 30 [Bouton: Icône de cloche avec notification non lue.] Cette ligne donne accès à la page des notifications. [Bouton: Icône de document avec texte \"Éditions\" et un badge.] Cette ligne donne accès à la boites des éditions, en rouge (éventuellement) le nombre d'éditions en erreur, en bleu le nombre d'édition en attente, en vert le nombre d'éditions disponibles. [Bouton: Anomalies, 6 alertes nouvelles.] Cette ligne indique le nombre d'anomalies vous concernant et auxquelles votre administrateur vous a autorisé l'accès., et donne accès à la liste des anomalies . 23 [Icône: Bouton \"Menu\" avec trois lignes horizontales.] L'accès au menu se fait en cliquant sur le titre [Image: Menu d'application avec les options : \"Accueil\", \"Consultation\", \"Saisie\", \"Gestion avancée\".] Mon activité Ce widget affiche le planning du jour [Image: Section intitulée \"Mon activité\" avec la date \"Aujourd'hui, mardi 17 septembre 2024\".] [Icône: Icône de loupe sur un document avec cases à cocher] Le calendrier permet de sélectionner une autre date. [Icône: Icône de double chevrons pointant vers la gauche] Les boutons permettent d'afficher le planning de la veille, du lendemain. Infos L'espace info affiche les dernières informations vous concernant [Image: Miniature d'article illustrant des icônes technologiques : nuage, globe et bouclier.] [Icône: Bouton \"Lire l'article\"] Le bouton permet de visualiser le document . Les autres widgets affichés dans le tableau de bord sont paramétrables par le biais de la page des",
         "page": null,
         "nom_fichier": "Employé Principes généraux.pdf",
-        "nombre_tokens": 453,
+        "nombre_tokens": 593,
         "questions_reponses": [
             {
-                "question": "Comment puis-je accéder à mes demandes dans le bandeau de l'application Octime ?",
-                "réponse": "Pour accéder à vos demandes dans le bandeau de l'application Octime, cliquez sur l'icône d'enveloppe avec le texte 'Mes demandes'. Cela vous redirigera vers la page des demandes où vous pourrez voir les demandes refusées (en rouge), celles en attente (en bleu) et celles validées (en vert)."
+                "question": "Comment puis-je accéder à mes demandes dans Octime ?",
+                "réponse": "Pour accéder à vos demandes dans Octime, cliquez sur le bouton avec l'icône d'enveloppe suivi de 'Mes demandes'. Cette page affichera toutes vos demandes, avec un code couleur : en rouge, les demandes refusées ; en bleu, celles en attente ; et en vert, celles validées."
             },
             {
-                "question": "Que représente le widget 'Mon activité' dans le bandeau de l'application ?",
-                "réponse": "Le widget 'Mon activité' dans le bandeau de l'application Octime affiche le planning du jour. Cela vous permet de visualiser rapidement vos engagements et activités prévues pour la journée."
+                "question": "Que signifie le bouton avec l'icône de cloche dans Octime ?",
+                "réponse": "Le bouton avec l'icône de cloche vous permet d'accéder à la page des notifications. Si vous avez des notifications non lues, elles seront indiquées par un badge sur l'icône, vous permettant de rester informé des mises à jour importantes."
+            },
+            {
+                "question": "Comment puis-je consulter les anomalies dans Octime ?",
+                "réponse": "Pour consulter les anomalies qui vous concernent, cliquez sur le bouton 'Anomalies'. Ce bouton affichera le nombre d'alertes nouvelles que votre administrateur vous a autorisé à voir, et vous donnera accès à la liste détaillée des anomalies."
             }
         ]
     },
     {
         "titre": "Chunk 5",
-        "contenu": "13 Principes généraux [Image: Interface utilisateur avec une section \"Mon activité\" et la date \"Aujourd'hui, mardi 17 septembre\".] [Icône: Icône d'une liste de tâches avec une loupe] Le calendrier permet de sélectionner une autre date. [Icône: Icône avec deux chevrons pointant vers la gauche.] Les boutons permettent d'afficher le planning de la veille, du lendemain. Infos L'espace info affiche les dernières informations vous concernant [Image: Illustration numérique avec des icônes technologiques : un nuage, un globe et un bouclier sur fond bleu.] [Icône: \"Lire l'article\"] Le bouton permet de visualiser le document . Les autres widgets affichés dans le tableau de bord sont paramétrables par le biais de la page des autorisations. Mes compteurs Cet outil affiche une visualisation à la date du jour, cette visualisation est paramétrable. 21 14 Principes généraux [Image: Tableau intitulé \"Suivi compteurs\" avec l'élément \"Temps dû final\" affichant 7h00.] Le lien Mes compteurs donne accès à la page Mes compteurs . Mes badges Cet outil affiche les badges de l'employé durant les 15 derniers jours, cette durée est paramétrable. 36 [Image: Tableau montrant les horaires de badgeage pour deux jours : mercredi 18, badgeage à 08:00.] Le lien Voir mon historique donne accès à la page donnant le détail de la journée . Mes absences Cet outil affiche les absences de l'employé durant les 15 derniers jours, cette durée est paramétrable.",
+        "contenu": "Les autres widgets affichés dans le tableau de bord sont paramétrables par le biais de la page des. autorisations. Mes compteurs Cet outil affiche une visualisation à la date du jour, cette visualisation est paramétrable. 21 [Image: Tableau de suivi des compteurs de temps de travail : Temps dû final de 7 heures,] Le lien Mes compteurs donne accès à la page Mes compteurs . Mes badges Cet outil affiche les badges de l'employé durant les 15 derniers jours, cette durée est paramétrable. 36 [Image: Tableau des heures de badgeage : Mercredi 18 - 08:00.] Le lien Voir mon historique donne accès à la page donnant le détail de la journée . Mes absences Cet outil affiche les absences de l'employé durant les 15 derniers jours, cette durée est paramétrable. 35 [Image: Interface \"Mes absences\" affichant une liste des 6 prochaines absences avec des dates spécifiques.] [Icône: Bouton \"Poser une absence\"] Le bouton permet d'accéder à la page de demande d'absence. Le lien Voir mon historique donne accès à la page donnant le détail de la journée . Mes horaires 35 Ce widgeet donne les horaires de début et de fin des plages obligatoires de l'horaire du jour et du lendemain. [Image: Planning des horaires du mercredi 18 septembre 2024.] [Icône: Bouton \"Poser un horaire\"] Le bouton donne accès à la page de demande d'horaire. Le lien Ma journée donne accès à la page donnant le détail de la journée . 35 Mon déclaratif Cet outil donne un accès rapide aux différentes pages de saisie du déclaratif. [Image: Interface avec six boutons bleus en grille sous le titre \"Mon déclaratif\".] Mon planning Cet outil affiche un planning du mois en cours. [Image: Calendrier de septembre 2024 montrant les jours de la semaine de lundi à dimanche,] Le lien Mon planning donne accès au planning individuel annuel",
         "page": null,
         "nom_fichier": "Employé Principes généraux.pdf",
-        "nombre_tokens": 459,
+        "nombre_tokens": 560,
         "questions_reponses": [
             {
-                "question": "Comment puis-je accéder à mes compteurs dans l'outil de gestion des temps ?",
-                "réponse": "Pour accéder à vos compteurs, vous devez cliquer sur le lien 'Mes compteurs' qui se trouve dans votre tableau de bord. Cela vous redirigera vers la page dédiée où vous pourrez visualiser vos compteurs à la date du jour. Notez que cette visualisation est paramétrable selon vos besoins."
+                "question": "Comment puis-je personnaliser les widgets affichés sur mon tableau de bord ?",
+                "réponse": "Les widgets affichés dans le tableau de bord sont paramétrables via la page des autorisations. Vous pouvez accéder à cette page pour ajuster les paramètres selon vos préférences."
             },
             {
-                "question": "Comment puis-je consulter mes absences passées dans le logiciel ?",
-                "réponse": "Pour consulter vos absences passées, vous devez utiliser l'outil 'Mes absences' qui affiche les absences de l'employé durant les 15 derniers jours. Cette durée peut être paramétrée selon vos préférences. Vous trouverez cet outil dans votre tableau de bord, et il vous permettra de suivre facilement vos absences récentes."
+                "question": "Que puis-je voir dans l'outil 'Mes badges' ?",
+                "réponse": "L'outil 'Mes badges' affiche les badges de l'employé durant les 15 derniers jours. Cette durée est paramétrable, et vous pouvez également accéder à la page 'Voir mon historique' pour obtenir le détail de chaque journée."
+            },
+            {
+                "question": "Comment puis-je demander une absence dans l'application ?",
+                "réponse": "Pour demander une absence, vous pouvez cliquer sur le bouton 'Poser une absence' qui vous redirigera vers la page de demande d'absence. De plus, vous pouvez consulter vos absences passées en accédant à la page 'Voir mon historique'."
             }
         ]
     },
     {
         "titre": "Chunk 6",
-        "contenu": "35 15 Principes généraux [Image: Texte montrant la section \"Mes absences\" avec une liste de prochaines et dernières absences. Les prochaines absences incl.] [Icône: Bouton \"Poser une absence\"] Le bouton permet d'accéder à la page de demande d'absence. Le lien Voir mon historique donne accès à la page donnant le détail de la journée . Mes horaires 35 Ce widgeet donne les horaires de début et de fin des plages obligatoires de l'horaire du jour et du lendemain. 16 Principes généraux [Image: Tableau des horaires avec deux sections : Première section pour \"Aujourd'hui, mercredi 18 sept. 2024\".] [Icône: Bouton bleu \"Poser un horaire\"] Le bouton donne accès à la page de demande d'horaire. Le lien Ma journée donne accès à la page donnant le détail de la journée . 35 Mon déclaratif Cet outil donne un accès rapide aux différentes pages de saisie du déclaratif. 17 Principes généraux [Image: Interface intitulée \"Mon déclaratif\" avec six boutons bleus disposés en deux rangées.] Mon planning Cet outil affiche un planning du mois en cours. [Image: Calendrier de septembre 2024 avec cercles jaunes du lundi au vendredi et cercles verts le week-end.] Le lien Mon planning donne accès au planning individuel annuel . 60 En télétravail 18 Principes généraux Cet outil affiche le prochain télétravail  planifié pour l'employé ainsi que les collègues en télétravail actuellement, il comporte également un lien qui permet d'accéder à la page de demande de",
+        "contenu": "[Image: Calendrier de septembre 2024 montrant les jours de la semaine de lundi à dimanche,] Le lien Mon planning donne accès au planning individuel annuel. . 60 En télétravail Cet outil affiche le prochain télétravail planifié pour l'employé ainsi que les collègues en télétravail actuellement, il comporte également un lien qui permet d'accéder à la page de demande de télétravail . 77 [Image: Interface indiquant les périodes de télétravail avec le titre \"Télétravail\" en haut et deux prochaines périodes listées.] [Icône: Bouton \"Poser un télétravail\" en bleu.] Le bouton permet d'accèder à la page de saisie de télétravail. L'annuaire Cet outil permet d'effectuer rapidement une recherche dans l'annuaire. Sur le nom ou le prénom : [Image: Interface de l'annuaire en ligne \"THYLLA\" avec une barre de recherche au centre.] [Icône: Icône de loupe pour la recherche.] Le bouton permet de lancer la recherche. [Bouton: Bouton avec le texte \"Plus de critères\".] Le bouton permet un accès direct à l'annuaire. La to do list Cet outil permet d'afficher une liste de tâches à réaliser, si l'utilisateur est lié à un employé, cette liste sera commune aux deux entités. [Image: Liste de tâches avec l'entrée \"Finir la documentation utilisateur\" et une icône.] [Bouton: Bouton \"Ajouter une tâche\" avec une flèche] Le bouton plus permet de rajouter une tâche. [Image: Fenêtre contextuelle pour ajouter une tâche, avec un champ de texte \"Message\".] [Icône: Icône de crayon bleu pour modifier.] Cliquer surle bouton à droite d'une tâche permet de la modifier ou de la supprimer. [Image: Fenêtre de modification d'une tâche dans une liste de choses à faire,] En cochant la tâche, elle considérée comme réalisé, un gauche apparaît devant.",
         "page": null,
         "nom_fichier": "Employé Principes généraux.pdf",
-        "nombre_tokens": 467,
+        "nombre_tokens": 566,
         "questions_reponses": [
             {
-                "question": "Comment puis-je poser une demande d'absence dans Octime ?",
-                "réponse": "Pour poser une demande d'absence dans Octime, vous devez cliquer sur le bouton 'Poser une absence' qui se trouve dans la section 'Mes absences'. Cela vous redirigera vers la page de demande d'absence où vous pourrez remplir les détails nécessaires."
+                "question": "Comment puis-je accéder à mon planning individuel annuel dans Octime ?",
+                "réponse": "Pour accéder à votre planning individuel annuel, vous devez cliquer sur le lien 'Mon planning' qui se trouve dans l'interface d'Octime. Cela vous permettra de visualiser l'ensemble de votre emploi du temps pour l'année."
             },
             {
-                "question": "Où puis-je consulter mon planning dans Octime ?",
-                "réponse": "Vous pouvez consulter votre planning dans Octime en cliquant sur le lien 'Mon planning'. Cela vous donnera accès à un calendrier du mois en cours ainsi qu'à votre planning individuel annuel, vous permettant de visualiser vos horaires et absences."
+                "question": "Comment puis-je poser une demande de télétravail dans Octime ?",
+                "réponse": "Pour poser une demande de télétravail, vous devez cliquer sur le bouton 'Poser un télétravail' qui est affiché dans la section dédiée au télétravail. Cela vous redirigera vers la page de saisie où vous pourrez entrer les détails de votre demande."
+            },
+            {
+                "question": "Comment fonctionne la to do list dans Octime ?",
+                "réponse": "La to do list dans Octime vous permet d'afficher une liste de tâches à réaliser. Si vous êtes lié à un employé, cette liste sera partagée entre vous deux. Vous pouvez ajouter une tâche en cliquant sur le bouton 'Ajouter une tâche', modifier ou supprimer une tâche en utilisant l'icône de crayon à droite de chaque entrée, et marquer une tâche comme réalisée en cochant la case correspondante."
             }
         ]
     },
     {
         "titre": "Chunk 7",
-        "contenu": "télétravail . 77 [Image: Interface affichant \"2 prochaines périodes de télétravail\" avec des points orange.] [Icône: Bouton bleu \"Poser un télétravail\"] Le bouton permet d'accèder à la page de saisie de télétravail. L'annuaire Cet outil permet d'effectuer rapidement une recherche dans l'annuaire. Sur le nom ou le prénom : [Image: Champ de recherche intitulé \"THYLLA\" sur fond bleu, permettant la recherche par nom ou prénom.] [Icône: Icône de loupe pour recherche.] Le bouton permet de lancer la recherche. [Bouton: \"Afficher plus de critères\"] Le bouton permet un accès direct à l'annuaire. La to do list Cet outil permet d'afficher une liste de tâches à réaliser, si l'utilisateur est lié à un employé, cette liste sera commune aux deux entités. 19 Principes généraux [Image: Liste de tâches intitulée \"To do list\" avec une tâche : \"Finir la documentation utilisateur\". Icone présente.] [Bouton: Bouton \"Ajouter une tâche\"] Le bouton plus permet de rajouter une tâche. [Image: Boîte de dialogue \"Ajout d'une tâche dans la To-do list\" avec champ de texte pour entrer un message.] [Icône: Icône de crayon bleu pour modifier] Cliquer surle bouton à droite d'une tâche permet de la modifier ou de la supprimer. [Image: Boîte de dialogue \"Modification d'une tâche dans la To do list\", contenant un champ de texte indiquant \"Ceci est ma liste\".] En cochant la tâche, elle considérée comme réalisé, un gauche apparaît devant.",
+        "contenu": "[Image: Fenêtre de modification d'une tâche dans une liste de choses à faire,] En cochant la tâche, elle considérée comme réalisé, un gauche apparaît devant. Au prochain affichage les tâches réalisées passent à la fin de la liste. Le tableau des documents Propose les documents d'une catégorie, rangés par sous-catégorie dans des onglets. [Image: Section de restauration avec trois onglets : \"Entrée,\" \"Plat du jour,\" \"Dessert.\" Onglet \"Entrée\" sélectionné.] Un clic sur le document ouvre directement l'objet. La liste des documents Cet outil affiche les 10 derniers documents lus, il est également de rechercher un objet par mot clés. [Image: Interface utilisateur avec la section \"Restauration\" contenant une liste d'options à cocher.] La dernière info Cet outil affiche le dernier objet créé. [Image: Dessert dans une coupe en verre avec boules de glace à la vanille et caramel.] Liens Cet outil permet d'afficher des liens vers des pages externes à l'application, ces liens se paramètrent par la page de paramétrage des modules externes. [Image: Section intitulée \"Liens utiles\" avec deux liens : \"Aide Employé\" et \"Actualités\".] En bas de page sont affichés la version, le nom du dossier et les boutons de changement de langue, si votre licence comporte cette option. [Bouton: Logo OC avec le texte \"OCTIME 11\"] 1.3.1 Visualisation d'un document Cette page permet de visualiser le texte complet des informations. Et de consulter les fichiers joints. [Image: Dessert d'île flottante avec deux boules de meringue nappées de caramel sur crème anglaise.] Si un fichier est joint à cette information, vous pouvez le consulter en cliquant sur l'icône correspondant",
         "page": null,
         "nom_fichier": "Employé Principes généraux.pdf",
-        "nombre_tokens": 480,
+        "nombre_tokens": 505,
         "questions_reponses": [
             {
-                "question": "Comment puis-je poser une demande de télétravail dans l'outil Octime ?",
-                "réponse": "Pour poser une demande de télétravail dans l'outil Octime, vous devez cliquer sur le bouton bleu intitulé 'Poser un télétravail'. Cela vous redirigera vers la page de saisie où vous pourrez entrer les détails de votre demande."
+                "question": "Comment puis-je marquer une tâche comme réalisée dans la liste de choses à faire ?",
+                "réponse": "Pour marquer une tâche comme réalisée, il vous suffit de cocher la case correspondante à cette tâche. Une fois cochée, un symbole apparaîtra devant la tâche, indiquant qu'elle est considérée comme réalisée. Lors du prochain affichage de la liste, les tâches réalisées seront déplacées à la fin de la liste."
             },
             {
-                "question": "Comment utiliser la to-do list dans Octime pour gérer mes tâches ?",
-                "réponse": "La to-do list dans Octime vous permet d'afficher une liste de tâches à réaliser. Si vous êtes lié à un employé, cette liste sera partagée entre vous deux. Vous pouvez ajouter une tâche en cliquant sur le bouton 'Ajouter une tâche', modifier ou supprimer une tâche en cliquant sur l'icône de crayon à droite de celle-ci, et marquer une tâche comme réalisée en cochant la case correspondante, ce qui fera apparaître un 'gauche' devant."
+                "question": "Comment puis-je accéder à un document spécifique dans le tableau des documents ?",
+                "réponse": "Pour accéder à un document spécifique dans le tableau des documents, cliquez simplement sur l'onglet de la catégorie qui vous intéresse, puis sélectionnez la sous-catégorie appropriée. Un clic sur le document que vous souhaitez ouvrir vous dirigera directement vers l'objet associé."
+            },
+            {
+                "question": "Comment puis-je consulter les fichiers joints à un document ?",
+                "réponse": "Pour consulter les fichiers joints à un document, accédez à la page de visualisation du document. Si des fichiers sont attachés, vous verrez une icône correspondante. Cliquez sur cette icône pour ouvrir et consulter les fichiers joints associés à l'information."
             }
         ]
     },
     {
         "titre": "Chunk 8",
-        "contenu": "Au prochain affichage les tâches réalisées passent à la fin de la liste. Le tableau des documents Propose les documents d'une catégorie, rangés par sous-catégorie dans des onglets. [Image: Interface de menu de restauration avec trois onglets : \"Entrée\", \"Plat du jour\", \"Dessert\".] 20 Principes généraux Un clic sur le document ouvre directement l'objet. La liste des documents Cet outil affiche les 10 derniers documents lus, il est également de rechercher un objet par mot clés. [Image: Section \"Restauration\" avec quatre cases à cocher : \"Menu de la semaine\", \"Le mardi\".] La dernière info Cet outil affiche le dernier objet créé. [Image: Coupe de glace vanille au caramel dans un verre tulipe.] Liens Cet outil permet d'afficher des liens vers des pages externes à l'application, ces liens se paramètrent par la page de paramétrage des modules externes. 21 Principes généraux [Image: Section \"Liens utiles\" avec les liens : \"Aide Employé\" et \"Actualités\".] En bas de page sont affichés la version, le nom du dossier et les boutons de changement de langue, si votre licence comporte cette option. [Bouton: Icône d'un cercle bleu avec les lettres \"OC\".] 1.3.1 Visualisation d'un document Cette page permet de visualiser le texte complet des informations. Et de consulter les fichiers joints. 22 Principes généraux [Image: Île flottante dans un verre transparent, avec des boules de meringue blanche sur une crème anglaise.] Si un fichier est joint à cette information, vous pouvez le consulter en cliquant sur l'icône correspondant",
+        "contenu": "] Si un fichier est joint à cette information, vous pouvez le consulter en cliquant sur l'icône correspondant. à son type : [Bouton: Lien \"Voir le document Word\"] , dans le cas d'un document Word. 1.3.2 Boite des éditions Si les édition sont lancées en différé, une fois terminées elles sont accessibles dans la boite des éditions. [Image: Liste des anomalies pour Ahargo Marc,] [Icône: Icône de document avec une pastille verte indiquant 5] Ell est accessible depuis le bandeau en cliquant sur l'icône ou depuis le portail en cliquant sur [Bouton: Deux cercles côte à côte. À gauche, un cercle bleu.] le nombre d'éditions en attente . [Bouton: Lien : Demande d'horaire à la carte.] Pour consulter une édition cliquer sur son libellé. , une fois consultée l'édition est supprimée de la liste. [Icône: Icône de corbeille pour supprimer des éléments.] Le bouton supprimer une édition de la liste sans la consulter. 1.3.3 Boite des anomalies Cette page affiche les anomalies vous concernant que vous êtes autorisé à voir. [Icône: Icône d'alerte avec point d'exclamation] Ell est accessible depuis le bandeau en cliquant sur l'icône ou depuis le portail en cliquant sur [Bouton: 6 notifications d'anomalies.] le nombre d'anomalies . [Icône: Bouton \"Voir\" avec une flèche droite.] Pour lever une anomalie cliquer sur le lien pour accéder à la page du déclaratif de la date concernée. 110 1.3.4 Espace documentaire Cette page permet de rechercher un document par mot clé, publié durant une période et de consulter les documents [Image:",
         "page": null,
         "nom_fichier": "Employé Principes généraux.pdf",
-        "nombre_tokens": 466,
+        "nombre_tokens": 497,
         "questions_reponses": [
             {
-                "question": "Comment les tâches réalisées sont-elles affichées dans le logiciel ?",
-                "réponse": "Au prochain affichage, les tâches réalisées passent à la fin de la liste, ce qui permet de garder les tâches en cours en haut pour une meilleure visibilité."
+                "question": "Comment puis-je consulter un document Word joint à une information dans Octime ?",
+                "réponse": "Pour consulter un document Word joint à une information, cliquez sur l'icône correspondant au type de document, qui est un bouton avec le lien 'Voir le document Word'."
             },
             {
-                "question": "Comment puis-je rechercher un document spécifique dans le tableau des documents ?",
-                "réponse": "Vous pouvez rechercher un objet par mots clés dans le tableau des documents, qui affiche également les 10 derniers documents lus pour un accès rapide."
+                "question": "Où puis-je trouver les éditions lancées en différé dans Octime ?",
+                "réponse": "Les éditions lancées en différé sont accessibles dans la boîte des éditions. Vous pouvez y accéder depuis le bandeau en cliquant sur l'icône dédiée ou depuis le portail en cliquant sur le nombre d'éditions en attente, représenté par un bouton avec deux cercles côte à côte."
+            },
+            {
+                "question": "Comment lever une anomalie dans Octime ?",
+                "réponse": "Pour lever une anomalie, accédez à la page des anomalies qui vous concernent. Cliquez sur le lien associé à l'anomalie pour accéder à la page du déclaratif de la date concernée."
             }
         ]
     },
     {
         "titre": "Chunk 9",
-        "contenu": "à son type : [Bouton: Document Word.] , dans le cas d'un document Word. 1.3.2 Boite des éditions Si les édition sont lancées en différé, une fois terminées elles sont accessibles dans la boite des éditions. 23 Principes généraux [Image: Tableau des anomalies pour Ahargo Marc (AH), 1er février 2021 : anomalie d'entrée.] [Icône: Icône de document avec une pastille verte en haut à droite contenant le] Ell est accessible depuis le bandeau en cliquant sur l'icône ou depuis le portail en cliquant sur [Bouton: Cercles affichant chacun le chiffre 5.] le nombre d'éditions en attente . [Bouton: Lien : Demande d'horaire à la carte.] Pour consulter une édition cliquer sur son libellé. , une fois consultée l'édition est supprimée de la liste. [Icône: Icône de poubelle pour supprimer un élément.] Le bouton supprimer une édition de la liste sans la  consulter. 1.3.3 Boite des anomalies Cette page affiche les anomalies vous concernant que vous êtes autorisé à voir. 24 Principes généraux [Icône: Icône d'exclamation dans un cercle bleu avec un badge rouge en haut] Ell est accessible depuis le bandeau en cliquant sur l'icône ou depuis le portail en cliquant sur [Bouton: \"6 notifications pour les anomalies\"] le nombre d'anomalies . [Icône: Flèche vers la droite avec le mot \"Voir\".] Pour lever une anomalie cliquer sur le lien pour accéder à la page du déclaratif de la date concernée.",
+        "contenu": "4 Espace documentaire Cette page permet de rechercher un document par mot clé, publié durant une période et de consulter les documents [Image:. Capture d'écran de l'Espace Documents d'un site web avec une barre de recherche à gauche.] A l'ouverture, la page affiche tous les documents : Il est possible de spécifier : - La période de publication : [Icône: Icône de calendrier avec une loupe.] - Le type de document : [Image: Liste déroulante avec les options \"Accueil\", \"Document\", \"Ewall\", \"Mobile\" et \"POP-IdSense\".] Les mots-clés : [Icône: Champ de texte \"Mot clé\"] La catégorie et éventuellement la sous-catégorie : [Image: Arborescence de dossiers. Dossier principal \"Espace Documents\" avec ses sous-dossiers.] [Bouton: Bouton Rechercher.] Lancez la recherche par le bouton . Les résultats s'affichent dans la partie droite de l'écran. [Image: Image d'un dessert composé de crème glacée et de caramel.] Pour visualiser un document cliquer sur le titre. Pour afficher directement le contenu d'un fichier cliquer sur le lien correspondant 21 [Image: Icône de document Word intitulé \"Catalogue des formations.doc\".] . 1.4 Sélection d'une date Les champs de type date permettent d'utiliser un calendrier, la saisie directe reste possible. [Bouton: Icône de calendrier et loupe.] Ce bouton ouvre le calendrier : [Image: Calendrier de juin 2020. Jours de la semaine de lundi à dimanche en haut.] Il est possible de passer au mois suivant ou au précédent par les deux flèches encadrant le mois en [Bouton: Bouton flèche gauche,] cours . Pour sélectionner une date, cliquer sur le jour correspondant, cela fermera le calendrier et renseignera le champ correspondant. [Bouton: Icône \"Aujourd'hui\"] Le lien permet de sélectionner le jour en cours.",
         "page": null,
         "nom_fichier": "Employé Principes généraux.pdf",
-        "nombre_tokens": 459,
+        "nombre_tokens": 561,
         "questions_reponses": [
             {
-                "question": "Comment accéder à la boîte des éditions dans Octime ?",
-                "réponse": "Vous pouvez accéder à la boîte des éditions en cliquant sur l'icône correspondante dans le bandeau ou en allant sur le portail et en cliquant sur le nombre d'éditions en attente, qui est représenté par des cercles affichant chacun le chiffre 5."
+                "question": "Comment puis-je rechercher un document dans l'Espace documentaire ?",
+                "réponse": "Pour rechercher un document dans l'Espace documentaire, vous devez utiliser la barre de recherche située à gauche de la page. Vous pouvez spécifier la période de publication, le type de document, les mots-clés, ainsi que la catégorie et éventuellement la sous-catégorie. Une fois que vous avez rempli les critères de recherche, cliquez sur le bouton 'Rechercher' pour afficher les résultats dans la partie droite de l'écran."
             },
             {
-                "question": "Que faire si je souhaite supprimer une édition sans la consulter ?",
-                "réponse": "Pour supprimer une édition de la liste sans la consulter, vous pouvez utiliser le bouton de suppression qui est représenté par une icône de poubelle. Cela vous permettra de retirer l'édition sans avoir à l'ouvrir au préalable."
-            }
-        ]
-    },
-    {
-        "titre": "Chunk 10",
-        "contenu": "110 1.3.4 Espace documentaire Cette page permet de rechercher un document par mot clé, publié durant une période et de consulter les documents [Image: Interface de gestion de documents avec une liste d'articles à droite. Chaque article comprend une image miniature, un titre et une courte description.] A l'ouverture, la page affiche tous les documents : Il est possible de spécifier : - La période de publication : 25 Principes généraux [Icône: Icône de calendrier avec une loupe à côté.] - Le type de document : [Image: Menu déroulant sous l'option \"Type\" avec les choix \"Accueil\", \"Document\", \"Ewall\", \"Mobile\".] Les mots-clés : [Icône: Zone de texte pour entrer un mot clé.] La catégorie et éventuellement la sous-catégorie : [Image: Arborescence de dossiers avec \"Espace Documents\" et le sous-dossier \"Bourse d'emploi\".] [Bouton: Bouton Rechercher.] Lancez la recherche par le bouton . Les résultats s'affichent dans la partie droite de l'écran. 26 Principes généraux [Image: Image d'un dessert glacé intitulé \"Menu de la semaine\".] Pour visualiser un document cliquer sur le titre. Pour afficher directement le contenu d'un fichier cliquer sur le lien correspondant 21 [Image: Icône de fichier Word intitulé \"Catalogue des formations.doc\".] . 1.4 Sélection d'une date Les champs de type date permettent d'utiliser un calendrier, la saisie directe reste possible. [Bouton: Icône de calendrier avec loupe.] Ce bouton ouvre le calendrier : 27 Principes généraux [Image: Calendrier de juin 2020, avec les jours de lundi à dimanche.] Il est possible de passer au mois suivant ou au précédent par les deux flèches encadrant le mois en [Bouton: Bouton pour naviguer vers le mois précédent.] cours",
-        "page": null,
-        "nom_fichier": "Employé Principes généraux.pdf",
-        "nombre_tokens": 543,
-        "questions_reponses": [
-            {
-                "question": "Comment puis-je rechercher un document dans l'espace documentaire d'Octime ?",
-                "réponse": "Pour rechercher un document, vous devez accéder à l'espace documentaire et utiliser les options disponibles. Vous pouvez spécifier la période de publication, le type de document, entrer des mots-clés, et sélectionner une catégorie ou sous-catégorie. Ensuite, cliquez sur le bouton 'Rechercher' pour afficher les résultats dans la partie droite de l'écran."
+                "question": "Comment sélectionner une date dans l'Espace documentaire ?",
+                "réponse": "Pour sélectionner une date, vous pouvez utiliser les champs de type date qui ouvrent un calendrier. Cliquez sur l'icône de calendrier pour afficher le calendrier, puis naviguez entre les mois avec les flèches. Cliquez sur le jour correspondant pour le sélectionner, ce qui fermera le calendrier et renseignera le champ de date. Vous pouvez également utiliser le lien 'Aujourd'hui' pour sélectionner la date actuelle."
             },
             {
-                "question": "Comment visualiser le contenu d'un document après l'avoir trouvé ?",
-                "réponse": "Une fois que vous avez effectué votre recherche et que les résultats s'affichent, vous pouvez visualiser un document en cliquant sur son titre. Si vous souhaitez afficher directement le contenu d'un fichier, cliquez sur le lien correspondant à ce fichier."
-            }
-        ]
-    },
-    {
-        "titre": "Chunk 11",
-        "contenu": ". Pour sélectionner une date, cliquer sur le jour correspondant, cela fermera le calendrier et renseignera le champ correspondant. [Bouton: « Aujourd'hui »] Le lien permet de sélectionner le jour en cours.",
-        "page": null,
-        "nom_fichier": "Employé Principes généraux.pdf",
-        "nombre_tokens": 64,
-        "questions_reponses": [
-            {
-                "question": "Comment puis-je sélectionner une date dans le calendrier d'Octime ?",
-                "réponse": "Pour sélectionner une date, il vous suffit de cliquer sur le jour correspondant dans le calendrier. Cela fermera automatiquement le calendrier et renseignera le champ de date correspondant. Si vous souhaitez sélectionner le jour en cours, vous pouvez également utiliser le bouton « Aujourd'hui », qui vous permettra de le faire rapidement."
+                "question": "Que faire pour visualiser un document après l'avoir trouvé ?",
+                "réponse": "Après avoir effectué une recherche et obtenu des résultats, pour visualiser un document, il vous suffit de cliquer sur le titre du document. Si vous souhaitez afficher directement le contenu d'un fichier, cliquez sur le lien correspondant à ce fichier. Cela vous permettra d'accéder rapidement au document que vous souhaitez consulter."
             }
         ]
     }

@@ -9,6 +9,7 @@ __pycache__/
 # Environnement
 .env
 .env.*
+docker-compose.override.yml
 
 # Logs
 *.log
@@ -42,3 +43,85 @@ build/
 # Résultats
 resultat_extraction/
 data-brute/
+
+# Fichier de mot de passe NGINX
+/etc/nginx/.htpasswd
+
+# Si ton .htpasswd est à la racine du projet (parfois utilisé pour dev local)
+.htpasswd
+
+# Certificats SSL (si jamais tu les stockes manuellement, même si gérés par Certbot)
+*.pem
+/etc/letsencrypt/
+/etc/nginx/ssl/
+
+# Clés et secrets divers
+.env
+*.key
+*.crt
+
+# 📁 Python
+__pycache__/
+*.py[cod]
+*.egg
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+.env
+*.env
+
+# 📁 FastAPI logs et artefacts
+logs/
+*.log
+*.sqlite3
+instance/
+
+# 📁 NGINX config & secrets
+nginx/.htpasswd
+*.pem
+*.crt
+*.key
+/etc/letsencrypt/
+ssl/
+
+# 📁 Docker & Containers
+docker-compose.override.yml
+*.pid
+*.sock
+.docker/
+docker.env
+
+# 📁 VSCode / IDEs
+.vscode/
+.idea/
+*.swp
+
+# 📁 Jupyter / IPython
+.ipynb_checkpoints/
+*.ipynb
+
+# 📁 Frontend static assets
+node_modules/
+build/
+public/
+
+# 📁 Tests
+htmlcov/
+.tox/
+.coverage
+pytest_cache/
+
+# 📁 Model & ML stuff
+checkpoints/
+*.pt
+*.bin
+runs/
+wandb/
+logs/
+outputs/
+
+# 📁 Exclude sensitive JSON or config if needed
+secrets.json
+config*.json

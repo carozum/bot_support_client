@@ -152,36 +152,32 @@ def clean_chunk_content(content, title_to_remove):
     return "\n".join(cleaned_lines)
 
 
-def add_overlap_to_chunks(chunks, overlap_sentences=1):
-    """
-    Ajoute un recouvrement (overlap) entre les chunks.
+def clean_content_line(text_line):
+    """Supprime certains patterns spécifiques du texte sans enlever la ligne complète."""
     
-    Args:
-        chunks (list of str): Liste de textes chunks sans overlap.
-        overlap_sentences (int): Nombre de phrases de recouvrement entre chaque chunk.
-        
-    Returns:
-        list of str: Nouveaux chunks avec overlap.
-    """
-    new_chunks = []
+    cleaned_line = text_line
     
-    for i in range(len(chunks)):
-        if i == 0:
-            new_chunks.append(chunks[i])
-        else:
-            # Extraire les phrases du chunk précédent
-            previous_sentences = chunks[i-1].split(".")
-            previous_sentences = [s.strip() for s in previous_sentences if s.strip()]
-            
-            # Prendre les dernières phrases souhaitées
-            overlap_part = ". ".join(previous_sentences[-overlap_sentences:]) + "."
-            
-            # Ajouter le overlap au début du chunk actuel
-            new_chunk = overlap_part + " " + chunks[i]
-            new_chunks.append(new_chunk)
-    
-    return new_chunks
+    # Remplacer les patterns de pied de page également
+    cleaned_line = re.sub(r"octime\s*-\s*module\s*web\s*employé", "", cleaned_line, flags=re.IGNORECASE)
+    cleaned_line = re.sub(r"octime\s*-\s*gestion\s*v\s*11", "", cleaned_line, flags=re.IGNORECASE)
+    cleaned_line = re.sub(r"©\s*2025\s*octime", "", cleaned_line, flags=re.IGNORECASE)
 
+    # Nettoyer les espaces en double créés par les suppressions
+    cleaned_line = re.sub(r"\s{2,}", " ", cleaned_line)
+
+    return cleaned_line.strip()
+
+
+def clean_header(text_line):
+    """Supprime manuellement les en-têtes type '67 Consultation', '11 Principes généraux'."""
+    keywords = ["Consultation", "Module de gestion", "Saisie", "Principes généraux"]
+
+    for keyword in keywords:
+        matches = re.findall(r"\d+\s+" + re.escape(keyword), text_line, flags=re.IGNORECASE)
+        for match in matches:
+            text_line = text_line.replace(match, "")
+    
+    return text_line.strip()
 
 
 def generate_content_from_pdf(pdf_path):
@@ -264,28 +260,22 @@ def generate_content_from_pdf(pdf_path):
         page_text = "\n"
         for e in all_elements:
             content = e['content'].strip()
+            # 1. Nettoyage basique des pieds de page fixes
+            content = content.replace("OCTIME - Module web Employé", "")
+            content = content.replace("OCTIME - Gestion v 11", "")
+            content = content.replace("Gestion v 11", "")
+            content = content.replace("© 2025 OCTIME", "")
+            content = content.replace("© 2025 Octime", "")
 
-            if content:
-                page_text += f"{content}\n"
+            # 2. Nettoyage dynamique des entêtes type "265 Module de gestion"
+            content = re.sub(r"\d+\s+Principes\s+généraux", "", content, flags=re.IGNORECASE)
+            content = re.sub(r"\d+\s+Saisie", "", content, flags=re.IGNORECASE)
+            content = re.sub(r"\d+\s+Consultation", "", content, flags=re.IGNORECASE)
+            content = content.replace(" Module de gestion", "")
 
-        # Nettoyage basique
-        page_text = page_text.replace("OCTIME - Module web Employé", "")
-        page_text = page_text.replace("OCTIME - Gestion v 11", "")
-        page_text = page_text.replace("Gestion v 11", "")
-        page_text = page_text.replace("© 2025 OCTIME", "")
-        page_text = page_text.replace("© 2025 Octime", "")
-
-        # Nettoyage dynamique sur motifs fragmentés
-        page_text = re.sub(r"\d+[\s\n\r]+Principes[\s\n\r]+généraux", "", page_text, flags=re.IGNORECASE)
-        page_text = re.sub(r"\d+[\s\n\r]+Module[\s\n\r]+de[\s\n\r]+gestion", "", page_text, flags=re.IGNORECASE)
-        page_text = re.sub(r"\d+[\s\n\r]+Consultation", "", page_text, flags=re.IGNORECASE)
-        page_text = re.sub(r"\d+[\s\n\r]+Saisie", "", page_text, flags=re.IGNORECASE)
-
-        # Nettoyage des espaces multiples
-        page_text = re.sub(r"\s{2,}", " ", page_text).strip()
+            page_text += f"{content}\n"
 
         final_document += page_text + "\n"
-        # logging.info(f"final_document {final_document}")
 
     chunks = chunker(docs=[final_document])
     #print(chunks)
@@ -301,10 +291,7 @@ def generate_content_from_pdf(pdf_path):
         chunks_flat.append(chunk_string)
     logging.info(f"chunks_flat {len(chunks_flat)}")
 
-    # etape 3 - Appliquer un overlap de 1 phrase par exemple
-    chunks_flat = add_overlap_to_chunks(chunks_flat, overlap_sentences=1)
-
-    # Étape 4 — construire les objets JSON
+    # Étape 3 — construire les objets JSON
     json_data = []
 
     for i, chunk_text in enumerate(chunks_flat):
