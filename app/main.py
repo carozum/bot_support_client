@@ -192,9 +192,28 @@ async def ask_stream(request: Request):
 # ############################### EVALUATION DES MODELES ###################################
 
 
-# MOCK - à remplacer par tes vraies fonctions de génération
+# MOCK - à remplacer par les vraies fonctions de génération au fur et à mesure
+
 def call_mistral_classic(question):
-    return f"Réponse FT classique à : {question}"
+    url = "https://carozum-supportbot.hf.space/generate"
+
+    try:
+        response = requests.post(
+            url,
+            headers={
+                "Authorization": f"Bearer {HF_TOKEN}",
+                "Content-Type": "application/json"},
+            json={"inputs": question},
+            timeout=60
+        )
+        print(response.text)
+        if response.status_code != 200:
+            return f"Erreur HF ({response.status_code})"
+
+        return response.json().get("response", "réponse vide")
+    except Exception as e:
+        return f"Exception HF : {e}"
+
 
 def call_mistral_raft(question):
     return f"Réponse RAFT à : {question}"
@@ -209,7 +228,20 @@ def call_customerbot(question):
     return f"Réponse du modèle Mistral Customerbot à : {question}"
 
 def call_gpt4o(question):
-    return f"Réponse GPT-4o + RAG à : {question}"
+    openai.api_key = os.getenv("OPENAI_API_KEY", "fake-key-for-tests")
+    escaped_question = json.dumps(question, ensure_ascii=False)
+    response = openai.chat.completions.create(
+        model="gpt-4o",
+        messages=[
+            {"role": "system", "content": "Tu es un assistant qui aide à comprendre une documentation en ligne"},
+            {"role": "user", "content": escaped_question}
+        ],
+        temperature=0.3,
+        top_p=0.5
+    )
+
+    return response.choices[0].message.content
+
 
 model_colors = {
     "Mistral 7B FT classique": "primary",
@@ -217,7 +249,7 @@ model_colors = {
     "Mistral 7B RAFT + RAG": "info",
     "Mixtral 12B FT": "warning",
     "Mistral customerbot": "success",
-    "GPT-4o + RAG": "danger",
+    "GPT-4o": "danger",
 }
 
 
@@ -238,7 +270,7 @@ async def evaluation_post(request: Request, question: str = Form(...)):
         "Mistral 7B RAFT + RAG": await run_in_threadpool(call_mistral_raft_rag, question),
         "Mixtral 12B FT": await run_in_threadpool(call_mixtral, question),
         "Mistral customerbot": await run_in_threadpool(call_customerbot, question),
-        "GPT-4o + RAG": await run_in_threadpool(call_gpt4o, question),
+        "GPT-4o": await run_in_threadpool(call_gpt4o, question),
     }
 
     return templates.TemplateResponse("evaluation.html", {
