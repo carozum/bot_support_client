@@ -30,7 +30,11 @@ app = FastAPI(
     description="API pour uploader des fichiers, visualiser la liste des fichiers uploadés et interroger le modèle",
     version="1.0.0"
 )
-Instrumentator().instrument(app).expose(app)
+Instrumentator(
+    should_group_status_codes=True,
+    should_ignore_untemplated=False,  # <== important
+    should_group_untemplated=False,   # <== important
+).instrument(app).expose(app)
 
 # Dossier courant du fichier main.py
 BASE_DIR = Path(__file__).resolve().parent
