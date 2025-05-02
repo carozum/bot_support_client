@@ -15,6 +15,7 @@ import requests
 from starlette.status import HTTP_401_UNAUTHORIZED
 from typing import Optional
 import json
+import secrets
 
 # ENV peut être "prod", "test", etc.
 ENV = os.getenv("ENV", "prod")
@@ -32,8 +33,8 @@ app = FastAPI(
 )
 Instrumentator(
     should_group_status_codes=True,
-    should_ignore_untemplated=False,  # <== important
-    should_group_untemplated=False,   # <== important
+    should_ignore_untemplated=False,
+    should_group_untemplated=False,
 ).instrument(app).expose(app)
 
 # Dossier courant du fichier main.py
@@ -54,23 +55,48 @@ templates = Jinja2Templates(directory=str(TEMPLATES_DIR))
 
 
 # Authentification basique
-# security = HTTPBasic()
+security = HTTPBasic()
 
-# def authenticate(credentials: HTTPBasicCredentials = Depends(security)):
-#    correct_username = os.getenv("BASIC_AUTH_USER", "admin")
-#    correct_password = os.getenv("BASIC_AUTH_PASS", "password")
-#    if credentials.username != correct_username or credentials.password != correct_password:
-#        raise HTTPException(
-#            status_code=HTTP_401_UNAUTHORIZED,
-#            detail="Identifiants invalides",
-#            headers={"WWW-Authenticate": "Basic"},
-#        )
+USERNAME = os.getenv("BASIC_AUTH_USER")
+PASSWORD = os.getenv("BASIC_AUTH_PASSWORD")
+
+def authenticate(credentials: HTTPBasicCredentials = Depends(security)):
+   correct_username = os.getenv("BASIC_AUTH_USER", "admin")
+   correct_password = os.getenv("BASIC_AUTH_PASS", "password")
+   if credentials.username != correct_username or credentials.password != correct_password:
+       raise HTTPException(
+           status_code=HTTP_401_UNAUTHORIZED,
+           detail="Identifiants invalides",
+           headers={"WWW-Authenticate": "Basic"},
+       )
+
+def check_credentials(credentials: HTTPBasicCredentials = Depends(security)):
+    valid_username = secrets.compare_digest(credentials.username, USERNAME)
+    valid_password = secrets.compare_digest(credentials.password, PASSWORD)
+    
+    if not (valid_username and valid_password):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Identifiants invalides",
+            headers={"WWW-Authenticate": "Basic"},
+        )
+    return credentials.username
+
+
+@app.middleware("http")
+async def block_malicious_routes(request: Request, call_next):
+    banned_keywords = ["phpunit", ".env", ".git", "config", "cms", "backup", "wp-admin"]
+    if any(bad in request.url.path.lower() for bad in banned_keywords):
+        return JSONResponse(status_code=403, content={"detail": "Forbidden"})
+    return await call_next(request)
+
 
 # ################################## ADMIN ##################################################
 
 # Page Admin avec upload et liste des fichiers
 @app.get("/admin", response_class=HTMLResponse, summary="Page Admin", tags=["Admin"])
-def admin_page(request: Request):
+def admin_page(request: Request, username: str = Depends(check_credentials)):
+    print(f"Bienvenue {username}, accès admin autorisé.")
     """route pour  servir le fichier html avec formulaire d'upload """
     files = os.listdir(DATA_BRUTE_DIR)
     return templates.TemplateResponse("admin.html", {
@@ -110,10 +136,11 @@ async def delete_file(filename: str = Form(...)):
 # Chat avec GPT-4o
 
 @app.get("/chat", response_class=HTMLResponse, summary="Poser une question", tags=["Chat"])
-def chat_form(request: Request):
+def chat_form(request: Request, username: str = Depends(check_credentials)):
+    print(f"Bienvenue {username}, accès admin autorisé.")
     return templates.TemplateResponse("chat.html", {"request": request})
 
-# enrichir cette fonction avec un sélecteur de modèle
+# Réponse avec  gpt4o
 
 @app.post("/chat", response_class=HTMLResponse, summary="Obtenir une réponse", tags=["Chat"])
 async def answer(request: Request, question: str = Form(...)):
@@ -158,7 +185,7 @@ HF_URL = "https://carozum-supportbot.hf.space/generate_stream"
 
 
 def huggingface_stream(question: str):
-    # Utiliser json.dumps pour échapper correctement les caractères spéciaux
+    # Utilisation de json.dumps pour échapper correctement les caractères spéciaux
     escaped_question = json.dumps(question, ensure_ascii=False)
 
     response = requests.post(
