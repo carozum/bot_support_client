@@ -53,7 +53,7 @@
           <td id="mistral-ft"></td>
           <td id="mistral-ft-rag"></td>
           <td id="mistral-raft"></td>
-          <td id="mistral-raft-rag"></td>
+          <td id="mistral-raft-ft"></td>
         </tr>
         <tr>
           <td>Mixtral 12B</td>
@@ -61,7 +61,7 @@
           <td id="mixtral-ft"></td>
           <td id="mixtral-ft-rag"></td>
           <td id="mixtral-raft"></td>
-          <td id="mixtral-raft-rag"></td>
+          <td id="mixtral-raft-ft"></td>
         </tr>
         <tr>
           <td>Mistral customer</td>
@@ -69,14 +69,22 @@
           <td id="mistral-customer-ft"></td>
           <td id="mistral-customer-ft-rag"></td>
           <td id="mistral-customer-raft"></td>
-          <td id="mistral-customer-raft-rag"></td>
+          <td id="mistral-customer-raft-ft"></td>
         </tr>
         <tr>
-          <td>OpenAI GPT-4o</td> <td id="gpt4o-rag"></td> <td id="gpt4o-ft">N/A</td> <td id="gpt4o-ft-rag">N/A</td> <td 
-          id="gpt4o-raft">N/A</td> <td id="mistral-customer-raft-rag">N/A</td>
+          <td>OpenAI GPT-4o</td>
+          <td id="gpt4o-rag"></td>
+          <td id="gpt4o-ft">N/A</td>
+          <td id="-rag"></td>
+          <td id="mistral-customer-raft"></td>
+          <td id="mistral-customer-raft-ft"></td>
         </tr>
       </tbody>
     </table>
+
+
+
+    <h2>A/B testing humain<h2>
     <div class="row row-cols-1 row-cols-md-2 g-4">
       {% for model, response in responses.items() %}
         <div class="col">

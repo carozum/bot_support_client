@@ -23,6 +23,13 @@ import openai
 
 
 
+# Authentification basique
+security = HTTPBasic()
+
+USERNAME = os.getenv("BASIC_AUTH_USER")
+PASSWORD = os.getenv("BASIC_AUTH_PASSWORD")
+
+
 def test_chat_post(monkeypatch):
     # Mock la fonction ask_openai directement
     def mock_ask_openai(question: str) -> str:
@@ -33,7 +40,7 @@ def test_chat_post(monkeypatch):
     response = client.post(
         "/chat",
         data={"question": "Qu'est-ce qu'une API ?"},
-        auth=("admin", "password")
+        auth=(USERNAME, PASSWORD)
     )
 
     assert response.status_code == 200
@@ -53,7 +60,7 @@ def test_upload_file(tmp_path):
     with open(test_file, "rb") as f:
         response = client.post(
             "/upload",
-            auth =("admin", "password"),
+            auth=(USERNAME, PASSWORD)
             files={"file": ("test.pdf", f, "application/pdf")})
 
     assert response.status_code == 200

@@ -12,7 +12,8 @@
         <a class="navbar-brand fw-bold" href="#">Interface d'aide en ligne</a>
         <div>
           <a class="nav-link d-inline px-2" href="/admin">Admin</a>
-          <a class="nav-link d-inline px-2" href="/validation">Validation du dataset</a>
+          <a class="nav-lik d-inline px-2" href="http://51.15.230.206:3000/" target="_blank">Grafana</a>
+          <a class="nav-link d-inline px-2" href="/validation">Validation Dataset</a>
           <a class="nav-link d-inline px-2" href="/evaluation">Évaluation des modèles</a>
           <a class="nav-link d-inline px-2" href="/chat">Aide en ligne</a>
         </div>
@@ -28,7 +29,14 @@
         <label for="model">Modèle :</label>
         <select id="modelSelect">
           <option value="openai">GPT-4o (OpenAI)</option>
-          <option value="hf">Mistral-7b-instruct-v03-fine-tuned</option>
+          <option value="premier-mistral">Mistral-7b-instruct premier fine tuning light</option>
+          <option value="premier-mistral">Mistral-7b-instruct-v03-fine-tuned</option>
+          <option value="mistral-7b-ft">Mistral-7B-Instruct-v0.3-standard</option>
+          <option value="mistral-7b-raft">Mistral-7B-Instruct-v0.3-raft</option>
+          <option value="gemma-7b-ft">gemma-7b-it-standard</option>
+          <option value="gemma-7b-raft">gemma-7b-it-raft</option>
+          <option value="phi-4-mini-ft">Phi-4-mini-instruct-standard</option>
+          <option value="phi-4-mini-raft">Phi-4-mini-instruct-raft</option>
         </select><br><br>
 
         <button type="button" class="btn btn-secondary mt-2" id="sendBtn">Envoyer</button>

@@ -207,9 +207,9 @@ async def ask_stream(request: Request):
     data = await request.json()
     print(data)
     question = data["question"]
-    model_type = data.get("model", "hf")  # hf par défaut
+    model_name = data.get("model", "hf")  # hf par défaut
 
-    if model_type == "openai":
+    if model_name == "openai":
         return StreamingResponse(ask_openai(question), media_type="text/plain")
     else:
         return StreamingResponse(huggingface_stream(question), media_type="text/plain")
